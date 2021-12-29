@@ -1,6 +1,6 @@
-# chatify_flutter
+# chatifyapp
 
-A Flutter & Firebase realtime Chat app.
+A new Flutter project.
 
 ## Getting Started
 

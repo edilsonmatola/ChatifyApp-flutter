@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mz.com.edilson.chatify_flutter">
+    package="mz.com.edilson.chatifyapp">
    <application
-        android:label="chatify_flutter"
+        android:label="chatifyapp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

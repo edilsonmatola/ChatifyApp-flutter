@@ -1,6 +1,6 @@
 {
-    "name": "chatify_flutter",
-    "short_name": "chatify_flutter",
+    "name": "chatifyapp",
+    "short_name": "chatifyapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
