@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 // packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
+
+// Pages
+import '../services/navigation_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -34,6 +38,7 @@ class _SplashPageState extends State<SplashPage> {
         scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1),
       ),
       home: Scaffold(
+        // Splash Image on Initialization
         body: Center(
           child: Container(
             height: 200,
@@ -52,6 +57,7 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
+  // Setting up the app
   Future<void> _setup() async {
     // Flutter ensures that all the widgets have been initialized
     WidgetsFlutterBinding.ensureInitialized();
@@ -59,5 +65,11 @@ class _SplashPageState extends State<SplashPage> {
     _registerServices();
   }
 
-  void _registerServices() {}
+  // App & Firebase Services
+  void _registerServices() {
+    // Creating a new instance of the Nav Services
+    GetIt.instance.registerSingleton<NavigationService>(
+      NavigationService(),
+    );
+  }
 }
