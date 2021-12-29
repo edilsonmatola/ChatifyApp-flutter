@@ -26,9 +26,12 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    // widget property to acess the methods from the super class
-    _setup().then(
-      (_) => widget.onInitializationComplete(),
+
+    // Delays 1 second before transitioning to the login screen/page
+    Future.delayed(Duration(seconds: 1)).then(
+      (_) => _setup().then(
+        (_) => widget.onInitializationComplete(),
+      ),
     );
   }
 
