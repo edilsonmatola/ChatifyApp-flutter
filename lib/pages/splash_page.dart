@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 // Services
 import '../services/navigation_service.dart';
 import '../services/media_service.dart';
+import '../services/cloud_storage_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -68,14 +69,19 @@ class _SplashPageState extends State<SplashPage> {
 
   // App & Firebase Services
   void _registerServices() {
-    // Creating a new instance of the Nav Services
+    // Creating a new instance of the Navigation Service
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
     );
 
-    // Creating a new instance of the Media Services
+    // Creating a new instance of the Media Service
     GetIt.instance.registerSingleton<MediaService>(
       MediaService(),
+    );
+
+    // Creating a new instance of the Cloud Storage Service
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
     );
   }
 }
