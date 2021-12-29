@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-// Pages
+// Services
 import '../services/navigation_service.dart';
+import '../services/media_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -70,6 +71,11 @@ class _SplashPageState extends State<SplashPage> {
     // Creating a new instance of the Nav Services
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
+    );
+
+    // Creating a new instance of the Media Services
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
     );
   }
 }
