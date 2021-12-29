@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import '../services/navigation_service.dart';
 import '../services/media_service.dart';
 import '../services/cloud_storage_service.dart';
+import 'package:chatifyapp/services/database_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -82,6 +83,11 @@ class _SplashPageState extends State<SplashPage> {
     // Creating a new instance of the Cloud Storage Service
     GetIt.instance.registerSingleton<CloudStorageService>(
       CloudStorageService(),
+    );
+
+    // Creating a new instance of the Database Service
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
     );
   }
 }
