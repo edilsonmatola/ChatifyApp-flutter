@@ -50,6 +50,10 @@ class _LoginPageState extends State<LoginPage> {
               height: _deviceHeight * .05,
             ),
             _loginButton(),
+            SizedBox(
+              height: _deviceHeight * .02,
+            ),
+            _registerAccountLink(),
           ],
         ),
       ),
@@ -108,6 +112,20 @@ class _LoginPageState extends State<LoginPage> {
       width: _deviceWidth * .65,
       height: _deviceHeight * .070,
       onPress: () {},
+    );
+  }
+
+  Widget _registerAccountLink() {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        child: Text(
+          "Don't have an account?",
+          style: TextStyle(
+            color: Colors.blueAccent,
+          ),
+        ),
+      ),
     );
   }
 }
