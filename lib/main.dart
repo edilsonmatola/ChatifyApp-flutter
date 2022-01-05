@@ -8,6 +8,7 @@ import './services/navigation_service.dart';
 
 // pages
 import './pages/splash_page.dart';
+import './pages/login_page.dart';
 
 void main() {
   runApp(
@@ -26,7 +27,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // navigatorKey: NavigationService.navigatorKey,
       title: 'Chatify',
       theme: ThemeData(
         backgroundColor: Color.fromRGBO(36, 35, 49, 1),
@@ -35,6 +35,11 @@ class MainApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(30, 29, 37, 1),
         ),
       ),
+      navigatorKey: NavigationService.navigatorKey,
+      initialRoute: '/login',
+      routes: {
+        '/login': (BuildContext _context) => LoginPage(),
+      },
     );
   }
 }
