@@ -27,6 +27,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Chatify',
       theme: ThemeData(
         backgroundColor: Color.fromRGBO(36, 35, 49, 1),
