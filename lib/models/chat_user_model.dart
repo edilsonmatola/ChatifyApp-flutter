@@ -1,13 +1,13 @@
 class ChatUserModel {
   ChatUserModel({
-    required this.id,
+    required this.uid,
     required this.name,
     required this.email,
     required this.imageUrl,
     required this.lastActive,
   });
 
-  final String id;
+  final String uid;
   final String name;
   final String email;
   final String imageUrl;
@@ -15,7 +15,7 @@ class ChatUserModel {
 
   factory ChatUserModel.fromJson(Map<String, dynamic> _json) {
     return ChatUserModel(
-      id: _json['uid'],
+      uid: _json['uid'],
       name: _json['name'],
       email: _json['email'],
       imageUrl: _json['image'],
@@ -25,7 +25,7 @@ class ChatUserModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'uid': id,
+      'uid': uid,
       'name': name,
       'email': email,
       'imageUrl': imageUrl,
