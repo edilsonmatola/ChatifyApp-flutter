@@ -47,8 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center
-          ,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _profileImageField(),
           ],
@@ -58,6 +57,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _profileImageField() {
-    return
+    return Center();
   }
 }
