@@ -1,4 +1,5 @@
 // Packages
+import 'package:chatifyapp/widgets/rounded_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
@@ -24,8 +25,20 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+// * Responsive layout
   late double _deviceWidth;
   late double _deviceHeight;
+
+// *Variables to store each Form field input values (texts)
+  String? _username;
+  String? _email;
+  String? _password;
+
+// * Variable responsible for holding/store our image
+  PlatformFile? _profileImage;
+
+// Form key
+  final _registerFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +63,17 @@ class _RegisterPageState extends State<RegisterPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _profileImageField(),
+            SizedBox(
+              height: _deviceHeight * .05,
+            ),
+            _registerForm(),
+            SizedBox(
+              height: _deviceHeight * .05,
+            ),
+            _registerButton(),
+            SizedBox(
+              height: _deviceHeight * .05,
+            ),
           ],
         ),
       ),
@@ -57,6 +81,96 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _profileImageField() {
-    return Center();
+    return GestureDetector(
+      onTap: () =>
+          GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
+        (_file) {
+          setState(
+            () {
+              _profileImage = _file;
+            },
+          );
+        },
+      ),
+      child: () {
+        if (_profileImage != null) {
+          // Selected image
+          return RoundedImageFile(
+            key: UniqueKey(),
+            image: _profileImage!,
+            size: _deviceHeight * .15,
+          );
+        } else {
+          // Default Image
+          return RoundedImageNetwork(
+            key: UniqueKey(),
+            size: _deviceHeight * .15,
+            imagePath:
+                'https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg', //'http://i.pravatar.cc/1000?img=65',
+          );
+        }
+      }(),
+    );
+  }
+
+  Widget _registerForm() {
+    return SizedBox(
+      height: _deviceHeight * .35,
+      child: Form(
+        key: _registerFormKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // *Username
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _username = _value;
+                });
+              },
+              regularExpression: r'.{8}',
+              hintText: 'Username',
+              obscureText: false,
+            ),
+            // *Email Field
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _email = _value;
+                });
+              },
+              regularExpression:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: 'Email',
+              obscureText: false,
+            ),
+            // TODO: Add Hde/Show Password toggle
+            // *Password Field
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _password = _value;
+                });
+              },
+              regularExpression: r".{8,}", //Password longer than 8 char
+              hintText: 'Email',
+              obscureText: true,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+// TODO: Futuramente, mudar o nome de Register => Sign up e colocar texto SIgn up em bold
+  Widget _registerButton() {
+    return RoundedButton(
+      name: 'Register',
+      width: _deviceWidth * .65,
+      height: _deviceHeight * .075,
+      onPress: () async {},
+    );
   }
 }
