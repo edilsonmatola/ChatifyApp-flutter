@@ -21,7 +21,7 @@ void main() {
     SplashPage(
       key: UniqueKey(),
       onInitializationComplete: () => runApp(
-        MainApp(),
+        const MainApp(),
       ),
     ),
   );
@@ -42,18 +42,18 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Chatify',
         theme: ThemeData(
-          backgroundColor: Color.fromRGBO(36, 35, 49, 1),
-          scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: const Color.fromRGBO(36, 35, 49, 1),
+          scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Color.fromRGBO(30, 29, 37, 1),
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
         routes: {
-          '/login': (BuildContext _context) => LoginPage(),
-          '/register': (BuildContext _context) => RegisterPage(),
-          '/home': (BuildContext _context) => HomePage(),
+          '/login': (BuildContext _context) => const LoginPage(),
+          '/register': (BuildContext _context) => const RegisterPage(),
+          '/home': (BuildContext _context) => const HomePage(),
         },
       ),
     );
