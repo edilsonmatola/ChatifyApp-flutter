@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildUI() {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: _deviceWidth * .03,
@@ -81,9 +81,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget _pageTitle() {
     return SizedBox(
       height: _deviceHeight * .10,
-      child: Text(
+      child: const Text(
         'Chatify',
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 40,
           fontWeight: FontWeight.w600,
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _registerAccountLink() {
     return GestureDetector(
       onTap: () => _navigationService.nagivateRoute('/register'),
-      child: Text(
+      child: const Text(
         "Don't have an account?",
         style: TextStyle(
           color: Colors.blueAccent,
