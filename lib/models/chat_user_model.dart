@@ -18,7 +18,7 @@ class ChatUserModel {
       uid: _json['uid'],
       name: _json['name'],
       email: _json['email'],
-      imageUrl: _json['image'],
+      imageUrl: _json['imageUrl'],
       lastActive: _json['last_active'].toDate(),
     );
   }
