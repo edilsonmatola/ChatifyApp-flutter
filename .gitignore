@@ -32,10 +32,6 @@
 /packages/flutter/coverage/
 version
 
-
-# Web related
-lib/generated_plugin_registrant.dart
-
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
@@ -49,6 +45,7 @@ linked_*.ds
 unlinked.ds
 unlinked_spec.ds
 .flutter-plugins-dependencies
+generated_plugin_registrant.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
