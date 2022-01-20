@@ -15,31 +15,36 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
-    _auth.signOut();
-    _auth.authStateChanges().listen((_user) {
-      if (_user != null) {
-        _databaseService.updateUserLastSeenTime(_user.uid);
-        _databaseService.getUser(_user.uid).then(
-          (_snapshot) {
-            Map<String, dynamic> _userData =
-                _snapshot.data()! as Map<String, dynamic>;
-            user = ChatUserModel.fromJson(
-              {
-                'uid': _user.uid,
-                'name': _userData['name'],
-                'email': _userData['email'],
-                'imageUrl': _userData['image'],
-                'last_active': _userData['last_active'],
-              },
-            );
-            _navigationService.removeAndNavigateToRoute('/home');
-          },
-        );
-      } else {
-        _navigationService.removeAndNavigateToRoute('/login');
-      }
-    });
+    _auth.authStateChanges().listen(
+      (_user) {
+        if (_user != null) {
+          _databaseService.updateUserLastSeenTime(_user.uid);
+          _databaseService.getUser(_user.uid).then(
+            (_snapshot) {
+              Map<String, dynamic> _userData =
+                  _snapshot.data()! as Map<String, dynamic>;
+              user = ChatUserModel.fromJson(
+                {
+                  'uid': _user.uid,
+                  'name': _userData['name'],
+                  'email': _userData['email'],
+                  'imageUrl': _userData['image'],
+                  'last_active': _userData['last_active'],
+                },
+              );
+              //* Automatic navigates to the home page
+              _navigationService.removeAndNavigateToRoute('/home');
+            },
+          );
+        } else {
+          // * In case the user is not null (exists), then the user must login
+          _navigationService.removeAndNavigateToRoute('/login');
+        }
+      },
+    );
   }
+
+  // TODO: Use scaffoldMessanger to show the error logs, instead of debugPrint
 
   late final FirebaseAuth _auth;
   late final NavigationService _navigationService;
@@ -60,7 +65,7 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  // Register user in the firebase
+  //* Register user in the firebase
   Future<String?> registerUserUsingEmailAndPassword(
     String _email,
     String _password,
