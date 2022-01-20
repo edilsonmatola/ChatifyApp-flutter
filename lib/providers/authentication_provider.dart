@@ -15,23 +15,29 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
+    _auth.signOut();
     _auth.authStateChanges().listen(
       (_user) {
         if (_user != null) {
           _databaseService.updateUserLastSeenTime(_user.uid);
           _databaseService.getUser(_user.uid).then(
             (_snapshot) {
-              Map<String, dynamic> _userData =
-                  _snapshot.data()! as Map<String, dynamic>;
-              user = ChatUserModel.fromJson(
-                {
-                  'uid': _user.uid,
-                  'name': _userData['name'],
-                  'email': _userData['email'],
-                  'imageUrl': _userData['image'],
-                  'last_active': _userData['last_active'],
-                },
-              );
+              // * Check if the documentSnapshot exists or not.
+              if (_snapshot.exists) {
+                final _userData = _snapshot.data() as Map<String, dynamic>;
+                //* Check if the document object is null or not
+                if (_snapshot.data() != null) {
+                  user = ChatUserModel.fromJson(
+                    {
+                      'uid': _user.uid,
+                      'name': _userData['name'],
+                      'email': _userData['email'],
+                      'imageUrl': _userData['image'],
+                      'last_active': _userData['last_active'],
+                    },
+                  );
+                }
+              }
               //* Automatic navigates to the home page
               _navigationService.removeAndNavigateToRoute('/home');
             },
