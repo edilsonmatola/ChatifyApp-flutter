@@ -1,9 +1,7 @@
 // Packages
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 // Providers
-import 'package:provider/provider.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -15,7 +13,7 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.green,
     );
   }
