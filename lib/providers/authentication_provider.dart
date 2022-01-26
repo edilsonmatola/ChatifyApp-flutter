@@ -31,7 +31,7 @@ class AuthenticationProvider extends ChangeNotifier {
                       'uid': _user.uid,
                       'name': _userData['name'],
                       'email': _userData['email'],
-                      'imageUrl': _userData['image'],
+                      'image': _userData['image'],
                       'last_active': _userData['last_active'],
                     },
                   );
@@ -95,3 +95,9 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 }
+
+// TODO: Bouncing Physics for the Chats and Users page
+//TODO: Swipe left or right to navigate through pages
+//TODO: Change Icons and Inovate the app
+// TODO: Increase the size of the Chat Tile
+// TODO: Add the messanger sender name on the group chat  and while it is typing
