@@ -18,18 +18,17 @@ class ChatUserModel {
       uid: _json['uid'],
       name: _json['name'],
       email: _json['email'],
-      imageUrl: _json['imageUrl'],
+      imageUrl: _json['image'],
       lastActive: _json['last_active'].toDate(),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'uid': uid,
       'name': name,
       'email': email,
-      'imageUrl': imageUrl,
-      'lastActive': lastActive,
+      'image': imageUrl,
+      'last_active': lastActive,
     };
   }
 

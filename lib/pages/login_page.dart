@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
       height: _deviceHeight * .10,
       child: const Text(
         'Chatify',
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.white,
           fontSize: 40,
           fontWeight: FontWeight.w600,
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * .25,
       child: Form(
         key: _loginFormKey,

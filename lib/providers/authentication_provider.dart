@@ -15,31 +15,50 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
-    _auth.signOut();
-    _auth.authStateChanges().listen((_user) {
-      if (_user != null) {
-        _databaseService.updateUserLastSeenTime(_user.uid);
-        _databaseService.getUser(_user.uid).then(
-          (_snapshot) {
-            Map<String, dynamic> _userData =
-                _snapshot.data()! as Map<String, dynamic>;
-            user = ChatUserModel.fromJson(
-              {
-                'uid': _user.uid,
-                'name': _userData['name'],
-                'email': _userData['email'],
-                'imageUrl': _userData['image'],
-                'last_active': _userData['last_active'],
-              },
-            );
-            _navigationService.removeAndNavigateToRoute('/home');
-          },
-        );
-      } else {
-        _navigationService.removeAndNavigateToRoute('/login');
-      }
-    });
+    _auth.authStateChanges().listen(
+      (_user) {
+        if (_user != null) {
+          _databaseService.updateUserLastSeenTime(_user.uid);
+          _databaseService.getUser(_user.uid).then(
+            (_snapshot) {
+              // * Check if the documentSnapshot exists or not.
+              if (_snapshot.exists) {
+                final _userData = _snapshot.data() as Map<String, dynamic>;
+                //* Check if the document object is null or not
+                if (_snapshot.data() != null) {
+                  user = ChatUserModel.fromJson(
+                    {
+                      'uid': _user.uid,
+                      'name': _userData['name'],
+                      'email': _userData['email'],
+                      'image': _userData['image'],
+                      'last_active': _userData['last_active'],
+                    },
+                  );
+                }
+              }
+              //* Automatic navigates to the home page
+              _navigationService.removeAndNavigateToRoute('/home');
+            },
+          );
+        } else {
+          // * In case the user is not null (exists), then the user must login
+          _navigationService.removeAndNavigateToRoute('/login');
+        }
+      },
+    );
   }
+// TODO: Bouncing Physics for the Chats and Users page
+
+//TODO: Swipe left or right to navigate through pages
+
+//TODO: Change Icons and Inovate the app
+
+// TODO: Increase the size of the Chat Tile
+
+// TODO: Add the messanger sender name on the group chat  and while it is typing
+
+// TODO: Use scaffoldMessanger to show the error logs, instead of debugPrint
 
   late final FirebaseAuth _auth;
   late final NavigationService _navigationService;
@@ -60,7 +79,7 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  // Register user in the firebase
+  //* Register user in the firebase
   Future<String?> registerUserUsingEmailAndPassword(
     String _email,
     String _password,

@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     // Delays 1 second before transitioning to the login screen/page
-    Future.delayed(Duration(seconds: 1)).then(
+    Future.delayed(const Duration(seconds: 1)).then(
       (_) => _setup().then(
         (_) => widget.onInitializationComplete(),
       ),
@@ -38,10 +38,11 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Chatify',
       theme: ThemeData(
-        backgroundColor: Color.fromRGBO(36, 35, 49, 1),
-        scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1),
+        backgroundColor: const Color.fromRGBO(36, 35, 49, 1),
+        scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1),
       ),
       home: Scaffold(
         // Splash Image on Initialization
@@ -49,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Container(
             height: 200,
             width: 200,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
                 image: AssetImage(
@@ -80,7 +81,7 @@ class _SplashPageState extends State<SplashPage> {
 
     // Creating a new instance of the Media Service
     GetIt.instance.registerSingleton<MediaService>(
-      MediaService(),
+      const MediaService(),
     );
 
     // Creating a new instance of the Cloud Storage Service

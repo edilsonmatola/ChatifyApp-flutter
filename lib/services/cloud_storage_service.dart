@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
 
-const String USER_COLLECTION = 'Users';
+const String userCollection = 'Users';
 
 class CloudStorageService {
   CloudStorageService();
