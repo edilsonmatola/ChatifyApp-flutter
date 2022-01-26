@@ -31,8 +31,8 @@ class ChatsPageProvider extends ChangeNotifier {
 // * Once not longer needed, it will be disposed
   @override
   void dispose() {
-    _chatsStream.cancel();
     super.dispose();
+    _chatsStream.cancel();
   }
 
 //* Getting the chats
@@ -50,15 +50,19 @@ class ChatsPageProvider extends ChangeNotifier {
                 for (var _uid in _chatData['members']) {
                   // * Getting the uid from each user
                   final _userSnapshot = await _database.getUser(_uid);
-                  //* Extracting the data from each user
-                  final _userData =
-                      _userSnapshot.data() as Map<String, dynamic>;
-                  //* Adding to members list the user instance
-                  _members.add(
-                    ChatUserModel.fromJson(
-                      _userData,
-                    ),
-                  );
+                  if (_eachDoc.data() != null) {
+                    //* Extracting the data from each user
+                    final _userData =
+                        _userSnapshot.data() as Map<String, dynamic>;
+                    // * Acessing the user id
+                    _userData['uid'] = _userSnapshot.id;
+                    //* Adding to members list the user instance
+                    _members.add(
+                      ChatUserModel.fromJson(
+                        _userData,
+                      ),
+                    );
+                  }
                 }
                 // * Get Last Message For Chat
                 List<ChatMessage> _messages = [];
