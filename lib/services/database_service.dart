@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 const String USER_COLLECTION = 'Users';
 const String CHAT_COLLECTION = 'Chats';
-const String MESSAGES_COLLECTION = 'Messages';
+const String MESSAGES_COLLECTION = 'messages';
 
 class DatabaseService {
   DatabaseService();
@@ -31,6 +31,28 @@ class DatabaseService {
   // Getting the User from Firebase Cloud Store
   Future<DocumentSnapshot> getUser(String _uid) {
     return _dataBase.collection(USER_COLLECTION).doc(_uid).get();
+  }
+
+//* Getting the chats from the users
+  Stream<QuerySnapshot> getChatsForsUser(String _uid) {
+    return _dataBase
+        .collection(CHAT_COLLECTION)
+        .where(
+          'members',
+          arrayContains: _uid,
+        )
+        .snapshots();
+  }
+
+  //* Update to the last chat sent
+  Future<QuerySnapshot> getLastMessageFroChat(String _chatID) {
+    return _dataBase
+        .collection(CHAT_COLLECTION)
+        .doc(_chatID)
+        .collection(MESSAGES_COLLECTION)
+        .orderBy('sent_time', descending: true,)
+        .limit(1)
+        .get();
   }
 
 // Update time

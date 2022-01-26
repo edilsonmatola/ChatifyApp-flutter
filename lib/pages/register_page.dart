@@ -1,9 +1,7 @@
 // Packages
-import 'package:chatifyapp/widgets/rounded_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
 
 // Services
 import '../services/media_service.dart';
@@ -12,10 +10,12 @@ import '../services/cloud_storage_service.dart';
 
 // Widgets
 import '../widgets/custom_input_fields.dart';
+import 'package:chatifyapp/widgets/rounded_image_network.dart';
 import '../widgets/rounded_button.dart';
 
 // Providers
 import '../providers/authentication_provider.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -35,9 +35,10 @@ class _RegisterPageState extends State<RegisterPage> {
   late DatabaseService _database;
   //* Store cloud storage reference
   late CloudStorageService _cloudStorageService;
+  // * Store reference to the navigation service
 
 // *Variables to store each Form field input values (texts)
-  String? _username;
+  String? _name;
   String? _email;
   String? _password;
 
@@ -49,9 +50,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    // * The auth provider will work because we wrapped our mainApp with MultiProvider
     _auth = Provider.of<AuthenticationProvider>(context);
     _database = GetIt.instance.get<DatabaseService>();
     _cloudStorageService = GetIt.instance.get<CloudStorageService>();
+
+    // * Responsive device
     _deviceWidth = MediaQuery.of(context).size.width;
     _deviceHeight = MediaQuery.of(context).size.height;
     return _buildUI();
@@ -90,6 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // *Upload image
   Widget _profileImageField() {
     return GestureDetector(
       onTap: () =>
@@ -133,15 +138,15 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // *Username
+            // *Name
             CustomTextFormField(
               onSaved: (_value) {
                 setState(() {
-                  _username = _value;
+                  _name = _value;
                 });
               },
               regularExpression: r'.{8}',
-              hintText: 'Username',
+              hintText: 'Name',
               obscureText: false,
             ),
             // *Email Field
@@ -156,7 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: 'Email',
               obscureText: false,
             ),
-            // TODO: Add Hde/Show Password toggle
+            // TODO: Add Hide/Show Password toggle
             // *Password Field
             CustomTextFormField(
               onSaved: (_value) {
@@ -165,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 });
               },
               regularExpression: r".{8,}", //Password longer than 8 char
-              hintText: 'Email',
+              hintText: 'Password',
               obscureText: true,
             ),
           ],
@@ -174,15 +179,42 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-// TODO: Futuramente, mudar o nome de Register => Sign up e colocar texto SIgn up em bold
+// TODO: Futuramente, mudar o nome de Register => Sign up e colocar texto Sign up em bold
   Widget _registerButton() {
     return RoundedButton(
       name: 'Register',
       width: _deviceWidth * .65,
       height: _deviceHeight * .075,
       onPress: () async {
-        if (_registerFormKey.currentState!.validate() && _profileImage != null) {
-          //* Continue with registering user
+        if (_registerFormKey.currentState!.validate() &&
+            _profileImage != null) {
+          //* Saving the input
+          _registerFormKey.currentState!.save();
+          //* Register user in the Firebase Authentication
+          final _uid = await _auth.registerUserUsingEmailAndPassword(
+            _email!,
+            _password!,
+          );
+          //* Upload the user image to the Firebase Storage
+          final _imageUrl =
+              await _cloudStorageService.saveUserImageProfileToStorage(
+            _uid!,
+            _profileImage!,
+          );
+          // Go to database to create user with uid
+          await _database.createUser(
+            _uid,
+            _email!,
+            _name!,
+            _imageUrl!,
+          );
+          //* Once the user is created, we will go back to the login page where we can login with the registered credentials
+          await _auth.logout();
+          // * requires the login with the user previously created
+          await _auth.loginUsingEmailAndPassword(
+            _email!,
+            _password!,
+          );
         }
       },
     );

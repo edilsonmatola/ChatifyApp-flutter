@@ -35,7 +35,7 @@ class RoundedImageNetwork extends StatelessWidget {
   }
 }
 
-// TODO: Colocar um icon de camera no pr
+// TODO: Colocar um icon de camera no profile screen
 
 class RoundedImageFile extends StatelessWidget {
   const RoundedImageFile({
@@ -66,6 +66,37 @@ class RoundedImageFile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// * Active or Not Icon
+class RoundedIMageNetworkWithStatusIndicator extends RoundedImageNetwork {
+  final bool isActive;
+
+  const RoundedIMageNetworkWithStatusIndicator({
+    required Key? key,
+    required String imagePath,
+    required double size,
+    required this.isActive,
+  }) : super(key: key, imagePath: imagePath, size: size);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      clipBehavior: Clip.none,
+      children: [
+        super.build(context),
+        Container(
+          height: size * .20,
+          width: size * .20,
+          decoration: BoxDecoration(
+            color: isActive ? Colors.green : Colors.red,
+            borderRadius: BorderRadius.circular(size),
+          ),
+        ),
+      ],
     );
   }
 }
