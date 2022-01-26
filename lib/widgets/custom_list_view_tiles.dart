@@ -6,8 +6,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart'; //Custom Animations
 import '../widgets/rounded_image_network.dart';
 
 // Models
-import '../models/chat_message_model.dart';
-import '../models/chat_user_model.dart';
+// import '../models/chat_message_model.dart';
+// import '../models/chat_user_model.dart';
 
 class CustomListViewTileWithActivity extends StatelessWidget {
   const CustomListViewTileWithActivity({

@@ -132,7 +132,7 @@ class _ChatsPageState extends State<ChatsPage> {
     var _subtitleText = '';
     if (_chat.messages.isNotEmpty) {
       //The chat may not have any messages when created
-      _subtitleText = _chat.messages.first.type != MessageType.TEXT
+      _subtitleText = _chat.messages.first.type != MessageType.text
           ? 'Media Attachment'
           : _chat.messages.first.content;
     }

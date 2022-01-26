@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum MessageType {
-  TEXT,
-  IMAGE,
-  UNKNOWN,
+  text,
+  image,
+  unknown,
 }
 
 class ChatMessage {
@@ -24,13 +24,13 @@ class ChatMessage {
     final MessageType _messageType;
     switch (_json['type']) {
       case 'text':
-        _messageType = MessageType.TEXT;
+        _messageType = MessageType.text;
         break;
       case 'image':
-        _messageType = MessageType.IMAGE;
+        _messageType = MessageType.image;
         break;
       default:
-        _messageType = MessageType.UNKNOWN;
+        _messageType = MessageType.unknown;
     }
     return ChatMessage(
       senderID: _json['sender_id'],
@@ -43,10 +43,10 @@ class ChatMessage {
   Map<String, dynamic> toJson() {
     final String _messageType;
     switch (type) {
-      case MessageType.TEXT:
+      case MessageType.text:
         _messageType = 'text';
         break;
-      case MessageType.IMAGE:
+      case MessageType.image:
         _messageType = 'image';
         break;
       default:

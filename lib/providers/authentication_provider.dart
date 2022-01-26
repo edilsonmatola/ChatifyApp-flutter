@@ -48,8 +48,17 @@ class AuthenticationProvider extends ChangeNotifier {
       },
     );
   }
+// TODO: Bouncing Physics for the Chats and Users page
 
-  // TODO: Use scaffoldMessanger to show the error logs, instead of debugPrint
+//TODO: Swipe left or right to navigate through pages
+
+//TODO: Change Icons and Inovate the app
+
+// TODO: Increase the size of the Chat Tile
+
+// TODO: Add the messanger sender name on the group chat  and while it is typing
+
+// TODO: Use scaffoldMessanger to show the error logs, instead of debugPrint
 
   late final FirebaseAuth _auth;
   late final NavigationService _navigationService;
@@ -95,9 +104,3 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 }
-
-// TODO: Bouncing Physics for the Chats and Users page
-//TODO: Swipe left or right to navigate through pages
-//TODO: Change Icons and Inovate the app
-// TODO: Increase the size of the Chat Tile
-// TODO: Add the messanger sender name on the group chat  and while it is typing

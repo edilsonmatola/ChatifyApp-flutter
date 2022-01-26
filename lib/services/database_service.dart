@@ -2,9 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
-const String USER_COLLECTION = 'Users';
-const String CHAT_COLLECTION = 'Chats';
-const String MESSAGES_COLLECTION = 'messages';
+const String userCollection = 'Users';
+const String chatCollection = 'Chats';
+const String messagesCollection = 'messages';
 
 class DatabaseService {
   DatabaseService();
@@ -15,7 +15,7 @@ class DatabaseService {
       String _uid, String _email, String _name, String _imageUrl) async {
     try {
       // * Going to the collections (User) the to the user uid and overrides the values of the fields
-      await _dataBase.collection(USER_COLLECTION).doc(_uid).set(
+      await _dataBase.collection(userCollection).doc(_uid).set(
         {
           'name': _name,
           'email': _email,
@@ -30,13 +30,13 @@ class DatabaseService {
 
   // Getting the User from Firebase Cloud Store
   Future<DocumentSnapshot> getUser(String _uid) {
-    return _dataBase.collection(USER_COLLECTION).doc(_uid).get();
+    return _dataBase.collection(userCollection).doc(_uid).get();
   }
 
 //* Getting the chats from the users
   Stream<QuerySnapshot> getChatsForsUser(String _uid) {
     return _dataBase
-        .collection(CHAT_COLLECTION)
+        .collection(chatCollection)
         .where(
           'members',
           arrayContains: _uid,
@@ -47,9 +47,9 @@ class DatabaseService {
   //* Update to the last chat sent
   Future<QuerySnapshot> getLastMessageFroChat(String _chatID) {
     return _dataBase
-        .collection(CHAT_COLLECTION)
+        .collection(chatCollection)
         .doc(_chatID)
-        .collection(MESSAGES_COLLECTION)
+        .collection(messagesCollection)
         .orderBy('sent_time', descending: true,)
         .limit(1)
         .get();
@@ -58,7 +58,7 @@ class DatabaseService {
 // Update time
   Future<void> updateUserLastSeenTime(String _uid) async {
     try {
-      await _dataBase.collection(USER_COLLECTION).doc(_uid).update(
+      await _dataBase.collection(userCollection).doc(_uid).update(
         {
           'last_active': DateTime.now().toUtc(),
         },
