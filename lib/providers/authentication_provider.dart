@@ -93,6 +93,7 @@ class AuthenticationProvider extends ChangeNotifier {
     } catch (error) {
       debugPrint('$error');
     }
+    return null;
   }
 
   // Logout

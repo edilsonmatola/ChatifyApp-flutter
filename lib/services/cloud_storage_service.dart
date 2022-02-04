@@ -30,6 +30,7 @@ class CloudStorageService {
     } catch (error) {
       debugPrint('$error');
     }
+    return null;
   }
 
   Future<String?> saveChatImageToStorage(
@@ -53,5 +54,6 @@ class CloudStorageService {
     } catch (error) {
       debugPrint('$error');
     }
+    return null;
   }
 }
