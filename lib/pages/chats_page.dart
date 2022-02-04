@@ -1,10 +1,17 @@
 // Packages
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 // Providers
 import '../providers/authentication_provider.dart';
 import '../providers/chats_page_provider.dart';
+
+// Services
+import '../services/navigation_service.dart';
+
+// Pages
+import '../pages/chat_page.dart';
 
 // Widgets
 import '../widgets/top_bar.dart';
@@ -28,6 +35,7 @@ class _ChatsPageState extends State<ChatsPage> {
   late double _deviceHeight;
 
   late AuthenticationProvider _auth;
+  late NavigationService _navigation;
   late ChatsPageProvider _pageProvider;
 
   @override
@@ -37,6 +45,7 @@ class _ChatsPageState extends State<ChatsPage> {
     _deviceHeight = MediaQuery.of(context).size.height;
 
     _auth = Provider.of<AuthenticationProvider>(context);
+    _navigation = GetIt.instance.get<NavigationService>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ChatsPageProvider>(
@@ -65,7 +74,7 @@ class _ChatsPageState extends State<ChatsPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TopBar(
-                'CHATS',
+                'Chats',
                 primaryAction: IconButton(
                   onPressed: () {
                     // * Logout the user if he/she presses the button icon
@@ -140,10 +149,12 @@ class _ChatsPageState extends State<ChatsPage> {
       height: _deviceHeight * .10,
       title: _chat.title(),
       subtitle: _subtitleText,
-      imagePath: 'https://i.pravatar.cc/300',
+      imagePath: _chat.chatImageURL(),
       isActive: _isActive,
       isActivity: _chat.activity,
-      onTap: () {},
+      onTap: () => _navigation.navigateToPage(
+        ChatPage(chat: _chat),
+      ),
     );
   }
 }
