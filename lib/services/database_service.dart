@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 const String userCollection = 'Users';
 const String chatCollection = 'Chats';
-const String messagesCollection = 'messages';
+const String messagesCollection = 'Messages';
 
 class DatabaseService {
   DatabaseService();
