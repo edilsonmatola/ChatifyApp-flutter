@@ -1,6 +1,8 @@
 import 'dart:async';
 
 // Packages
+import 'package:chatifyapp/models/chat_message_model.dart';
+import 'package:chatifyapp/models/chats_model.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
@@ -34,7 +36,7 @@ class ChatPageProvider extends ChangeNotifier {
   ScrollController _messagesListViewController;
 
   String _chatId;
-  List<ChatUserModel>? _messages;
+  List<ChatMessage>? _messages;
 
   String? _message;
 
