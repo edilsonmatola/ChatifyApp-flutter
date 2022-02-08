@@ -2,9 +2,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
+// Models
+import '../models/chat_message_model.dart';
+
 const String userCollection = 'Users';
 const String chatCollection = 'Chats';
-const String messagesCollection = 'messages';
+const String messagesCollection = 'Messages';
 
 class DatabaseService {
   DatabaseService();
@@ -50,9 +53,45 @@ class DatabaseService {
         .collection(chatCollection)
         .doc(_chatID)
         .collection(messagesCollection)
-        .orderBy('sent_time', descending: true,)
+        .orderBy(
+          'sent_time',
+          descending: true,
+        )
         .limit(1)
         .get();
+  }
+
+  Stream<QuerySnapshot> streamMessagesForChatPage(String _chatId) {
+    return _dataBase
+        .collection(chatCollection)
+        .doc(_chatId)
+        .collection(messagesCollection)
+        .orderBy('sent_time', descending: false)
+        .snapshots();
+  }
+
+  // * Add messages to the firestore databse
+  Future<void> addMessagesToChat(String _chatId, ChatMessage _message) async {
+    try {
+      await _dataBase
+          .collection(chatCollection)
+          .doc(_chatId)
+          .collection(messagesCollection)
+          .add(
+            _message.toJson(),
+          );
+    } catch (error) {
+      debugPrint('$error');
+    }
+  }
+
+  Future<void> updateChatData(
+      String _chatId, Map<String, dynamic> _data) async {
+    try {
+      await _dataBase.collection(chatCollection).doc(_chatId).update(_data);
+    } catch (error) {
+      debugPrint('$error');
+    }
   }
 
 // Update time
@@ -65,6 +104,15 @@ class DatabaseService {
       );
     } catch (e) {
       debugPrint('$e');
+    }
+  }
+
+  // *Delete chat
+  Future<void> deleteChat(String _chatId) async {
+    try {
+      await _dataBase.collection(chatCollection).doc(_chatId).delete();
+    } catch (error) {
+      debugPrint('$error');
     }
   }
 }
