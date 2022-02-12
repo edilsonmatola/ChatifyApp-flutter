@@ -97,7 +97,8 @@ class _ChatPageState extends State<ChatPage> {
                         color: Color.fromRGBO(0, 82, 218, 1),
                       ),
                     ),
-                  )
+                  ),
+                  _messagesListView(),
                 ],
               ),
             ),
@@ -105,5 +106,50 @@ class _ChatPageState extends State<ChatPage> {
         );
       },
     );
+  }
+
+// * Rendenring Messages from Firebase
+  Widget _messagesListView() {
+    if (_pageProvider.messages != null) {
+      if (_pageProvider.messages!.isNotEmpty) {
+        return SizedBox(
+          height: _deviceHeight * .74,
+          child: ListView.builder(
+            itemCount: _pageProvider.messages!.length,
+            itemBuilder: (BuildContext _context, int _index) {
+              final _message = _pageProvider.messages![_index];
+              final _isOwnMessage = _message.senderID == _auth.user.uid;
+              return CustomChatListViewTile(
+                width: _deviceWidth * .80,
+                deviceHeight: _deviceHeight,
+                isOwnMessage: _isOwnMessage,
+                message: _message,
+                sender: widget
+                    .chat
+                    .members
+                    .where((element) => element.uid == _message.senderID)
+                    .first,
+              );
+            },
+          ),
+        );
+      } else {
+        return const Align(
+          alignment: Alignment.center,
+          child: Text(
+            'Be the first to send a message!',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        );
+      }
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(
+          color: Colors.white,
+        ),
+      );
+    }
   }
 }
