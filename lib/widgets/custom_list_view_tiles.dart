@@ -1,4 +1,6 @@
 // Packages
+import 'package:chatifyapp/models/chat_message_model.dart';
+import 'package:chatifyapp/models/chat_user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart'; //Custom Animations
 
@@ -69,6 +71,51 @@ class CustomListViewTileWithActivity extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
+    );
+  }
+}
+
+class CustomChatListViewTile extends StatelessWidget {
+  const CustomChatListViewTile({
+    Key? key,
+    required this.width,
+    required this.deviceHeight,
+    required this.isOwnMessage,
+    required this.message,
+    required this.sender,
+  }) : super(key: key);
+
+  final double width;
+  final double deviceHeight;
+  final bool isOwnMessage;
+  final ChatMessage message;
+  final ChatUserModel sender;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 10),
+      width: width,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment:
+            isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          !isOwnMessage
+              ? RoundedImageNetwork(
+                  imagePath: sender.imageUrl,
+                  size: width * .04,
+                )
+              : Container(),
+          SizedBox(
+            width: width * .05,
+          ),
+          message.type == MessageType.text
+              ? Text(message.content)
+              : Text(message.content),
+        ],
+      ),
     );
   }
 }
