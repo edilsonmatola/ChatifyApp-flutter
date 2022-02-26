@@ -36,7 +36,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   late AuthenticationProvider _auth;
   late NavigationService _navigation;
-  late ChatsPageProvider _pageProvider;
+  late ChatsPageProvider  _pageProvider;
 
   @override
   Widget build(BuildContext context) {
