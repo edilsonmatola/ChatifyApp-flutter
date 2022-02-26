@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart'; //Custom Animations
 
 // Widgets
 import '../widgets/rounded_image_network.dart';
+import '../widgets/text_message_bubbles.dart';
 
 // Models
 // import '../models/chat_message_model.dart';
@@ -112,7 +113,12 @@ class CustomChatListViewTile extends StatelessWidget {
             width: width * .05,
           ),
           message.type == MessageType.text
-              ? Text(message.content)
+              ? TextMessageBubble(
+                  isOwnMessage: isOwnMessage,
+                  message: message,
+                  width: width,
+                  height: deviceHeight * .06,
+                )
               : Text(message.content),
         ],
       ),
