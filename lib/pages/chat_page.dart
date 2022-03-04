@@ -83,14 +83,18 @@ class _ChatPageState extends State<ChatPage> {
                     widget.chat.title(),
                     fontSize: 16,
                     primaryAction: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _pageProvider.deleteChat();
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Color.fromRGBO(0, 82, 218, 1),
                       ),
                     ),
                     secondaryAction: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _pageProvider.goBack();
+                      },
                       icon: const Icon(
                         Icons.arrow_back_ios,
                         color: Color.fromRGBO(0, 82, 218, 1),
