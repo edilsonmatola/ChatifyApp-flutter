@@ -170,12 +170,15 @@ class _ChatPageState extends State<ChatPage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             _messageTextField(),
+            _sendMessageButton(),
+            _sendImageButton(),
           ],
         ),
       ),
     );
   }
 
+//* Text Field to compose the message
   Widget _messageTextField() {
     return SizedBox(
       width: _deviceWidth * .65,
@@ -184,6 +187,38 @@ class _ChatPageState extends State<ChatPage> {
         regularExpression: r"^(?!\s*$).+",
         hintText: 'Type a message',
         obscureText: false,
+      ),
+    );
+  }
+
+  // * Send Message Button
+  Widget _sendMessageButton() {
+    double _size = _deviceHeight * .04;
+    return Container(
+      width: _size,
+      height: _size,
+      child: IconButton(
+        onPressed: () {},
+        icon: const Icon(
+          Icons.send,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  // * Send Image Button
+  Widget _sendImageButton() {
+    double _size = _deviceHeight * .04;
+    return Container(
+      width: _size,
+      height: _size,
+      child: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(0, 82, 218, 1),
+        onPressed: () {},
+        child: const Icon(
+          Icons.camera,
+        ),
       ),
     );
   }
