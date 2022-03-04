@@ -55,7 +55,7 @@ class _ChatPageState extends State<ChatPage> {
             _auth,
             _messagesListViewController,
           ),
-        )
+        ),
       ],
       child: _buildUI(),
     );
@@ -70,8 +70,9 @@ class _ChatPageState extends State<ChatPage> {
             physics: const BouncingScrollPhysics(),
             child: Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: _deviceWidth * .03,
-                  vertical: _deviceHeight * .02),
+                horizontal: _deviceWidth * .03,
+                vertical: _deviceHeight * .02,
+              ),
               width: _deviceWidth,
               height: _deviceHeight,
               child: Column(
@@ -119,6 +120,7 @@ class _ChatPageState extends State<ChatPage> {
         return SizedBox(
           height: _deviceHeight * .74,
           child: ListView.builder(
+            controller: _messagesListViewController,
             itemCount: _pageProvider.messages!.length,
             itemBuilder: (BuildContext _context, int _index) {
               final _message = _pageProvider.messages![_index];
