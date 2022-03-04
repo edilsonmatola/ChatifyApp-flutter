@@ -3,6 +3,7 @@ import 'dart:async';
 // Packages
 import 'package:chatifyapp/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get_it/get_it.dart';
 
 // Services
@@ -25,7 +26,9 @@ class ChatPageProvider extends ChangeNotifier {
     _database = GetIt.instance.get<DatabaseService>();
     _storage = GetIt.instance.get<CloudStorageService>();
     _navigation = GetIt.instance.get<NavigationService>();
+    _keyboardVisibilityController = KeyboardVisibilityController();
     listenToMessages();
+    listenToKeyboardChanges();
   }
 
   late DatabaseService _database;
@@ -40,6 +43,8 @@ class ChatPageProvider extends ChangeNotifier {
   List<ChatMessage>? messages;
 
   late StreamSubscription _messagesStream;
+  late StreamSubscription _keyboardVisibilityStream;
+  late KeyboardVisibilityController _keyboardVisibilityController;
 
   String? _message;
 
@@ -78,6 +83,18 @@ class ChatPageProvider extends ChangeNotifier {
     } catch (error) {
       debugPrint('$error');
     }
+  }
+
+// * User Typing activity listening to the keyboard
+  void listenToKeyboardChanges() {
+    _keyboardVisibilityStream = _keyboardVisibilityController.onChange.listen(
+      (_event) {
+        _database.updateChatData(
+          _chatId,
+          {'is_activity': _event},
+        );
+      },
+    );
   }
 
   //* =============== Media Type messages =======================
