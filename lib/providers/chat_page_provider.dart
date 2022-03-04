@@ -17,7 +17,7 @@ import '../providers/authentication_provider.dart';
 // Models
 
 class ChatPageProvider extends ChangeNotifier {
-  ChatPageProvider(this._chatId, this._auth, this._messagesListViewController) {
+  ChatPageProvider(this._chatId, this._auth, ScrollController messagesListViewController) {
     _database = GetIt.instance.get<DatabaseService>();
     _storage = GetIt.instance.get<CloudStorageService>();
     _navigation = GetIt.instance.get<NavigationService>();
@@ -30,7 +30,6 @@ class ChatPageProvider extends ChangeNotifier {
   late NavigationService _navigation;
 
   final AuthenticationProvider _auth;
-  final ScrollController _messagesListViewController;
 
   final String _chatId;
   List<ChatMessage>? messages;
@@ -40,6 +39,8 @@ class ChatPageProvider extends ChangeNotifier {
   String? _message;
 
   String get message => _message as String;
+
+  set message(String _value) => _message = _value;
 
   @override
   void dispose() {
