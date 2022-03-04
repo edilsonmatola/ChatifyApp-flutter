@@ -1,5 +1,6 @@
 // Packages
 import 'package:chatifyapp/providers/chat_page_provider.dart';
+import 'package:chatifyapp/widgets/custom_input_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -97,6 +98,7 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                   ),
                   _messagesListView(),
+                  _sendMessageForm(),
                 ],
               ),
             ),
@@ -122,9 +124,7 @@ class _ChatPageState extends State<ChatPage> {
                 deviceHeight: _deviceHeight,
                 isOwnMessage: _isOwnMessage,
                 message: _message,
-                sender: widget
-                    .chat
-                    .members
+                sender: widget.chat.members
                     .where((element) => element.uid == _message.senderID)
                     .first,
               );
@@ -149,5 +149,42 @@ class _ChatPageState extends State<ChatPage> {
         ),
       );
     }
+  }
+
+  Widget _sendMessageForm() {
+    return Container(
+      height: _deviceHeight * .06,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(30, 29, 37, 1),
+        borderRadius: BorderRadius.circular(100),
+      ),
+      margin: EdgeInsets.symmetric(
+        horizontal: _deviceWidth * .04,
+        vertical: _deviceHeight * .03,
+      ),
+      child: Form(
+        key: _messageFormState,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            _messageTextField(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _messageTextField() {
+    return SizedBox(
+      width: _deviceWidth * .65,
+      child: CustomTextFormField(
+        onSaved: (_value) => _pageProvider.message = _value,
+        regularExpression: r"^(?!\s*$).+",
+        hintText: 'Type a message',
+        obscureText: false,
+      ),
+    );
   }
 }
