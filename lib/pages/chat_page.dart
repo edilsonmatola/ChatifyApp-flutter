@@ -194,11 +194,18 @@ class _ChatPageState extends State<ChatPage> {
   // * Send Message Button
   Widget _sendMessageButton() {
     double _size = _deviceHeight * .04;
-    return Container(
+    return SizedBox(
       width: _size,
       height: _size,
       child: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          if (_messageFormState.currentState!.validate()) {
+            _messageFormState.currentState!.save();
+            _pageProvider.sendTextMessage();
+            // Reset the field after sending the message
+            _messageFormState.currentState!.reset();
+          }
+        },
         icon: const Icon(
           Icons.send,
           color: Colors.white,
@@ -210,14 +217,14 @@ class _ChatPageState extends State<ChatPage> {
   // * Send Image Button
   Widget _sendImageButton() {
     double _size = _deviceHeight * .04;
-    return Container(
+    return SizedBox(
       width: _size,
       height: _size,
       child: FloatingActionButton(
         backgroundColor: const Color.fromRGBO(0, 82, 218, 1),
         onPressed: () {},
         child: const Icon(
-          Icons.camera,
+          Icons.camera_alt,
         ),
       ),
     );
