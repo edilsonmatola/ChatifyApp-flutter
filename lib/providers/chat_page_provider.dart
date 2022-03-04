@@ -17,7 +17,11 @@ import '../providers/authentication_provider.dart';
 // Models
 
 class ChatPageProvider extends ChangeNotifier {
-  ChatPageProvider(this._chatId, this._auth, ScrollController messagesListViewController) {
+  ChatPageProvider(
+    this._chatId,
+    this._auth,
+    this._messagesListViewController,
+  ) {
     _database = GetIt.instance.get<DatabaseService>();
     _storage = GetIt.instance.get<CloudStorageService>();
     _navigation = GetIt.instance.get<NavigationService>();
@@ -30,6 +34,7 @@ class ChatPageProvider extends ChangeNotifier {
   late NavigationService _navigation;
 
   final AuthenticationProvider _auth;
+  final ScrollController _messagesListViewController;
 
   final String _chatId;
   List<ChatMessage>? messages;
@@ -60,6 +65,14 @@ class ChatPageProvider extends ChangeNotifier {
           ).toList();
           messages = _messages;
           notifyListeners();
+          // * Go to the last sent message
+          WidgetsBinding.instance!.addPostFrameCallback((_) {
+            if (_messagesListViewController.hasClients) {
+              _messagesListViewController.jumpTo(
+                _messagesListViewController.position.maxScrollExtent,
+              );
+            }
+          });
         },
       );
     } catch (error) {
@@ -111,6 +124,7 @@ class ChatPageProvider extends ChangeNotifier {
     _database.deleteChat(_chatId);
   }
 
+// * Go Back to previous screen
   void goBack() {
     _navigation.goBack();
   }
