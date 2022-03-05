@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
+// TODO: Adicionar funcionalidade de break line quando mensagem for longa (ou quando o usuario clicar enter button)
   @override
   Widget build(BuildContext context) {
     return TextFormField(
