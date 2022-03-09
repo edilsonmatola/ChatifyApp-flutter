@@ -65,14 +65,37 @@ class _UsersPageState extends State<UsersPage> {
             ),
           ),
           CustomTextField(
-            onEditingComplete: (_value){},
+            onEditingComplete: (_value) {},
             hintText: 'Search...',
             obscureText: false,
             controller: _searchFieldTextEditingController,
             icon: Icons.search,
           ),
+          _usersList(),
         ],
       ),
+    );
+  }
+
+// * Render the chats of the users
+  Widget _usersList() {
+    return Expanded(
+      child: () {
+        return ListView.builder(
+          itemCount: 10,
+          itemBuilder: (BuildContext _context, int _index) {
+            return CustomListViewTile(
+              height: _deviceHeight * .10,
+              title: 'User $_index',
+              subtitle: 'Last Active',
+              imagePath: 'https://i.pravatar.cc/300',
+              isActive: false,
+              isSelected: false,
+              onTap: () {},
+            );
+          },
+        );
+      }(),
     );
   }
 }
