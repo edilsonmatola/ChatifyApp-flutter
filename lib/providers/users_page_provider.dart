@@ -57,4 +57,14 @@ class UsersPageProvider extends ChangeNotifier {
       debugPrint('$error');
     }
   }
+
+  // * Select multiple Users
+  void updateSelectedUsers(ChatUserModel _user) {
+    if (_selectedUsers.contains(_user)) {
+      _selectedUsers.remove(_user);
+    } else {
+      _selectedUsers.add(_user);
+    }
+    notifyListeners();
+  }
 }

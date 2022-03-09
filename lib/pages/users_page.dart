@@ -105,8 +105,12 @@ class _UsersPageState extends State<UsersPage> {
                   subtitle: 'Last Active: ${_users[_index].lastActive}',
                   imagePath: _users[_index].imageUrl,
                   isActive: _users[_index].wasRecentlyActive(),
-                  isSelected: false,
-                  onTap: () {},
+                  isSelected: _userPageProvider.selectedUsers.contains(
+                    _users[_index],
+                  ),
+                  onTap: () => _userPageProvider.updateSelectedUsers(
+                    _users[_index],
+                  ),
                 );
               },
             );
