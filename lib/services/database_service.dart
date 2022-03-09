@@ -32,11 +32,11 @@ class DatabaseService {
   }
 
   //* Getting the User from Firebase Cloud Store
-  Future<DocumentSnapshot> getUser(String _uid) {
+  Future<DocumentSnapshot> getUser(String _uid, {String? name}) {
     return _dataBase.collection(userCollection).doc(_uid).get();
   }
 
-  Future<QuerySnapshot> getUsers(String? name) {
+  Future<QuerySnapshot> getUsers({String? name}) {
     Query _query = _dataBase.collection(userCollection);
     if (name != null) {
       _query = _query.where('name', isGreaterThanOrEqualTo: name).where(

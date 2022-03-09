@@ -22,6 +22,7 @@ class UsersPageProvider extends ChangeNotifier {
     _selectedUsers = [];
     _database = GetIt.instance.get<DatabaseService>();
     _navigation = GetIt.instance.get<NavigationService>();
+    getUsers();
   }
 
   AuthenticationProvider _auth;
@@ -34,5 +35,26 @@ class UsersPageProvider extends ChangeNotifier {
 
   List<ChatUserModel> get selectedUsers => _selectedUsers;
 
-  
+// * Getting the users name from the Firebase
+  void getUsers({String? name}) async {
+    _selectedUsers = [];
+    try {
+      _database.getUsers(name: name).then(
+        (_snapshot) {
+          users = _snapshot.docs.map(
+            (_eachDoc) {
+              final _data = _eachDoc.data() as Map<String, dynamic>;
+              _data['uid'] = _eachDoc.id;
+              return ChatUserModel.fromJson(_data);
+            },
+          ).toList();
+          notifyListeners();
+        },
+      );
+    } catch (error) {
+      // TODO: Return a scaffoldMessanger instead of debugPrint
+      debugPrint('Error getting users');
+      debugPrint('$error');
+    }
+  }
 }

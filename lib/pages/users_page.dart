@@ -91,22 +91,43 @@ class _UsersPageState extends State<UsersPage> {
 
 // * Render the chats of the users
   Widget _usersList() {
+    List<ChatUserModel>? _users = _userPageProvider.users;
     return Expanded(
       child: () {
-        return ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext _context, int _index) {
-            return CustomListViewTile(
-              height: _deviceHeight * .10,
-              title: 'User $_index',
-              subtitle: 'Last Active',
-              imagePath: 'https://i.pravatar.cc/300',
-              isActive: false,
-              isSelected: false,
-              onTap: () {},
+        if (_users != null) {
+          if (_users.isNotEmpty) {
+            return ListView.builder(
+              itemCount: _users.length,
+              itemBuilder: (BuildContext _context, int _index) {
+                return CustomListViewTile(
+                  height: _deviceHeight * .10,
+                  title: _users[_index].name,
+                  subtitle: 'Last Active: ${_users[_index].lastActive}',
+                  imagePath: _users[_index].imageUrl,
+                  isActive: _users[_index].wasRecentlyActive(),
+                  isSelected: false,
+                  onTap: () {},
+                );
+              },
             );
-          },
-        );
+          } else {
+            return const Center(
+              child: Text(
+                'No users found',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            );
+          }
+        } else {
+          // TODO: Implement Shimmer loading effect or Tell the user to use that he/she doesn't have a list of users
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          );
+        }
       }(),
     );
   }
