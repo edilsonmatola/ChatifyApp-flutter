@@ -10,7 +10,6 @@ import '../providers/users_page_provider.dart';
 import '../widgets/top_bar.dart';
 import '../widgets/custom_input_fields.dart';
 import '../widgets/custom_list_view_tiles.dart';
-import '../widgets/rounded_button.dart';
 
 // Models
 import '../models/chat_user_model.dart';
