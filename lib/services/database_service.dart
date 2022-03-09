@@ -126,4 +126,15 @@ class DatabaseService {
       debugPrint('$error');
     }
   }
+
+// * Select and Create chat
+  Future<DocumentReference?> createChat(Map<String, dynamic> _data) async {
+    try {
+      final _chat = await _dataBase.collection(chatCollection).add(_data);
+      return _chat;
+    } catch (error) {
+      debugPrint('$error');
+    }
+    return null;
+  }
 }
