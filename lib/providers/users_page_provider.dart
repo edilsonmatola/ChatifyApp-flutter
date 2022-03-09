@@ -1,5 +1,4 @@
 // Packages
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,10 +11,8 @@ import '../providers/authentication_provider.dart';
 
 // Models
 import '../models/chat_user_model.dart';
-import '../models/chat_message_model.dart';
 
 // Pages
-import '../pages/chat_page.dart';
 
 class UsersPageProvider extends ChangeNotifier {
   UsersPageProvider(this._auth) {
