@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 // Providers
 import '../providers/authentication_provider.dart';
+import '../providers/users_page_provider.dart';
 
 // Widgets
 import '../widgets/top_bar.dart';
@@ -26,6 +27,7 @@ class _UsersPageState extends State<UsersPage> {
   late double _deviceHeight;
 
   late AuthenticationProvider _auth;
+  late UsersPageProvider _userPageProvider;
 
   final TextEditingController _searchFieldTextEditingController =
       TextEditingController();
@@ -35,46 +37,56 @@ class _UsersPageState extends State<UsersPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
     _deviceHeight = MediaQuery.of(context).size.height;
     _auth = Provider.of<AuthenticationProvider>(context);
-    return _buildUI();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UsersPageProvider>(
+          create: (_) => UsersPageProvider(_auth),
+        ),
+      ],
+      child: _buildUI(),
+    );
   }
 
   Widget _buildUI() {
-    return Container(
-      width: _deviceWidth * .97,
-      height: _deviceHeight * .98,
-      padding: EdgeInsets.symmetric(
-        horizontal: _deviceWidth * .03,
-        vertical: _deviceHeight * .02,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          TopBar(
-            'Users',
-            primaryAction: IconButton(
-              onPressed: () {
-                // * Logout the user if he/she presses the button icon
-                _auth.logout();
-              },
-              icon: const Icon(
-                Icons.logout_outlined,
-                color: Color.fromRGBO(0, 82, 218, 1),
+    return Builder(builder: (_context) {
+      _userPageProvider = _context.watch<UsersPageProvider>();
+      return Container(
+        width: _deviceWidth * .97,
+        height: _deviceHeight * .98,
+        padding: EdgeInsets.symmetric(
+          horizontal: _deviceWidth * .03,
+          vertical: _deviceHeight * .02,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            TopBar(
+              'Users',
+              primaryAction: IconButton(
+                onPressed: () {
+                  // * Logout the user if he/she presses the button icon
+                  _auth.logout();
+                },
+                icon: const Icon(
+                  Icons.logout_outlined,
+                  color: Color.fromRGBO(0, 82, 218, 1),
+                ),
               ),
             ),
-          ),
-          CustomTextField(
-            onEditingComplete: (_value) {},
-            hintText: 'Search...',
-            obscureText: false,
-            controller: _searchFieldTextEditingController,
-            icon: Icons.search,
-          ),
-          _usersList(),
-        ],
-      ),
-    );
+            CustomTextField(
+              onEditingComplete: (_value) {},
+              hintText: 'Search...',
+              obscureText: false,
+              controller: _searchFieldTextEditingController,
+              icon: Icons.search,
+            ),
+            _usersList(),
+          ],
+        ),
+      );
+    });
   }
 
 // * Render the chats of the users
