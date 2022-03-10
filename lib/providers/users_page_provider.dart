@@ -24,7 +24,7 @@ class UsersPageProvider extends ChangeNotifier {
     getUsers();
   }
 
-  AuthenticationProvider _auth;
+  final AuthenticationProvider _auth;
 
   late DatabaseService _database;
   late NavigationService _navigation;
@@ -103,6 +103,8 @@ class UsersPageProvider extends ChangeNotifier {
           messages: [],
         ),
       );
+      _selectedUsers = [];
+      notifyListeners();
       _navigation.navigateToPage(_chatPage);
     } catch (error) {
       debugPrint('Error creating chat');
