@@ -1,4 +1,5 @@
 // Packages
+import 'package:chatifyapp/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -75,13 +76,18 @@ class _UsersPageState extends State<UsersPage> {
               ),
             ),
             CustomTextField(
-              onEditingComplete: (_value) {},
+              onEditingComplete: (_value) {
+                // TODO: Criar funcionalidade para fazer um search enquanto o user vai digitando e o valor aparece
+                _userPageProvider.getUsers(name: _value);
+                FocusScope.of(context).unfocus();
+              },
               hintText: 'Search...',
               obscureText: false,
               controller: _searchFieldTextEditingController,
               icon: Icons.search,
             ),
             _usersList(),
+            _createChatOrGroupButton(),
           ],
         ),
       );
@@ -132,6 +138,22 @@ class _UsersPageState extends State<UsersPage> {
           );
         }
       }(),
+    );
+  }
+
+  // * Button to create group or chat with user
+  Widget _createChatOrGroupButton() {
+    return Visibility(
+      visible: _userPageProvider
+          .selectedUsers.isNotEmpty, // Apears at least 1 user is selected.
+      child: RoundedButton(
+        name: _userPageProvider.selectedUsers.length == 1
+            ? 'Chat with ${_userPageProvider.selectedUsers.first.name}'
+            : 'Create Group Chat',
+        width: _deviceWidth * .80,
+        height: _deviceHeight * 08,
+        onPress: () => _userPageProvider.createChat(),
+      ),
     );
   }
 }
