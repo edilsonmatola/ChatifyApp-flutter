@@ -31,9 +31,20 @@ class DatabaseService {
     }
   }
 
-  // Getting the User from Firebase Cloud Store
-  Future<DocumentSnapshot> getUser(String _uid) {
+  //* Getting the User from Firebase Cloud Store
+  Future<DocumentSnapshot> getUser(String _uid, {String? name}) {
     return _dataBase.collection(userCollection).doc(_uid).get();
+  }
+
+  Future<QuerySnapshot> getUsers({String? name}) {
+    Query _query = _dataBase.collection(userCollection);
+    if (name != null) {
+      _query = _query.where('name', isGreaterThanOrEqualTo: name).where(
+            'name',
+            isLessThanOrEqualTo: name + 'z',
+          );
+    }
+    return _query.get();
   }
 
 //* Getting the chats from the users
@@ -94,7 +105,7 @@ class DatabaseService {
     }
   }
 
-// Update time
+//* Update time
   Future<void> updateUserLastSeenTime(String _uid) async {
     try {
       await _dataBase.collection(userCollection).doc(_uid).update(
@@ -114,5 +125,16 @@ class DatabaseService {
     } catch (error) {
       debugPrint('$error');
     }
+  }
+
+// * Select and Create chat
+  Future<DocumentReference?> createChat(Map<String, dynamic> _data) async {
+    try {
+      final _chat = await _dataBase.collection(chatCollection).add(_data);
+      return _chat;
+    } catch (error) {
+      debugPrint('$error');
+    }
+    return null;
   }
 }

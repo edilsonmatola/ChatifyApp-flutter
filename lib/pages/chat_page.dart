@@ -1,5 +1,6 @@
 // Packages
 import 'package:chatifyapp/providers/chat_page_provider.dart';
+import 'package:chatifyapp/widgets/custom_input_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class _ChatPageState extends State<ChatPage> {
             _auth,
             _messagesListViewController,
           ),
-        )
+        ),
       ],
       child: _buildUI(),
     );
@@ -69,8 +70,9 @@ class _ChatPageState extends State<ChatPage> {
             physics: const BouncingScrollPhysics(),
             child: Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: _deviceWidth * .03,
-                  vertical: _deviceHeight * .02),
+                horizontal: _deviceWidth * .03,
+                vertical: _deviceHeight * .02,
+              ),
               width: _deviceWidth,
               height: _deviceHeight,
               child: Column(
@@ -82,14 +84,18 @@ class _ChatPageState extends State<ChatPage> {
                     widget.chat.title(),
                     fontSize: 16,
                     primaryAction: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _pageProvider.deleteChat();
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Color.fromRGBO(0, 82, 218, 1),
                       ),
                     ),
                     secondaryAction: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _pageProvider.goBack();
+                      },
                       icon: const Icon(
                         Icons.arrow_back_ios,
                         color: Color.fromRGBO(0, 82, 218, 1),
@@ -97,6 +103,7 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                   ),
                   _messagesListView(),
+                  _sendMessageForm(),
                 ],
               ),
             ),
@@ -113,6 +120,7 @@ class _ChatPageState extends State<ChatPage> {
         return SizedBox(
           height: _deviceHeight * .74,
           child: ListView.builder(
+            controller: _messagesListViewController,
             itemCount: _pageProvider.messages!.length,
             itemBuilder: (BuildContext _context, int _index) {
               final _message = _pageProvider.messages![_index];
@@ -122,9 +130,7 @@ class _ChatPageState extends State<ChatPage> {
                 deviceHeight: _deviceHeight,
                 isOwnMessage: _isOwnMessage,
                 message: _message,
-                sender: widget
-                    .chat
-                    .members
+                sender: widget.chat.members
                     .where((element) => element.uid == _message.senderID)
                     .first,
               );
@@ -149,5 +155,86 @@ class _ChatPageState extends State<ChatPage> {
         ),
       );
     }
+  }
+
+  Widget _sendMessageForm() {
+    return Container(
+      height: _deviceHeight * .06,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(30, 29, 37, 1),
+        borderRadius: BorderRadius.circular(100),
+      ),
+      margin: EdgeInsets.symmetric(
+        horizontal: _deviceWidth * .04,
+        vertical: _deviceHeight * .03,
+      ),
+      child: Form(
+        key: _messageFormState,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            _messageTextField(),
+            _sendMessageButton(),
+            _sendImageButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+//* Text Field to compose the message
+  Widget _messageTextField() {
+    return SizedBox(
+      width: _deviceWidth * .65,
+      child: CustomTextFormField(
+        onSaved: (_value) => _pageProvider.message = _value,
+        regularExpression: r"^(?!\s*$).+",
+        hintText: 'Type a message',
+        obscureText: false,
+      ),
+    );
+  }
+
+  // * Send Message Button
+  Widget _sendMessageButton() {
+    double _size = _deviceHeight * .04;
+    return SizedBox(
+      width: _size,
+      height: _size,
+      child: IconButton(
+        onPressed: () {
+          if (_messageFormState.currentState!.validate()) {
+            _messageFormState.currentState!.save();
+            _pageProvider.sendTextMessage();
+            // Reset the field after sending the message
+            _messageFormState.currentState!.reset();
+          }
+        },
+        icon: const Icon(
+          Icons.send,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  // * Send Image Button
+  Widget _sendImageButton() {
+    double _size = _deviceHeight * .04;
+    return SizedBox(
+      width: _size,
+      height: _size,
+      child: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(0, 82, 218, 1),
+        onPressed: () {
+          _pageProvider.sendImageMessage();
+        },
+        child: const Icon(
+          Icons.camera_alt,
+        ),
+      ),
+    );
   }
 }

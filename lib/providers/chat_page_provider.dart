@@ -3,6 +3,7 @@ import 'dart:async';
 // Packages
 import 'package:chatifyapp/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get_it/get_it.dart';
 
 // Services
@@ -17,11 +18,17 @@ import '../providers/authentication_provider.dart';
 // Models
 
 class ChatPageProvider extends ChangeNotifier {
-  ChatPageProvider(this._chatId, this._auth, this._messagesListViewController) {
+  ChatPageProvider(
+    this._chatId,
+    this._auth,
+    this._messagesListViewController,
+  ) {
     _database = GetIt.instance.get<DatabaseService>();
     _storage = GetIt.instance.get<CloudStorageService>();
     _navigation = GetIt.instance.get<NavigationService>();
+    _keyboardVisibilityController = KeyboardVisibilityController();
     listenToMessages();
+    listenToKeyboardChanges();
   }
 
   late DatabaseService _database;
@@ -36,10 +43,14 @@ class ChatPageProvider extends ChangeNotifier {
   List<ChatMessage>? messages;
 
   late StreamSubscription _messagesStream;
+  late StreamSubscription _keyboardVisibilityStream;
+  late KeyboardVisibilityController _keyboardVisibilityController;
 
   String? _message;
 
   String get message => _message as String;
+
+  set message(String _value) => _message = _value;
 
   @override
   void dispose() {
@@ -59,11 +70,31 @@ class ChatPageProvider extends ChangeNotifier {
           ).toList();
           messages = _messages;
           notifyListeners();
+          // * Go to the last sent message
+          WidgetsBinding.instance!.addPostFrameCallback((_) {
+            if (_messagesListViewController.hasClients) {
+              _messagesListViewController.jumpTo(
+                _messagesListViewController.position.maxScrollExtent,
+              );
+            }
+          });
         },
       );
     } catch (error) {
       debugPrint('$error');
     }
+  }
+
+// * User Typing activity listening to the keyboard
+  void listenToKeyboardChanges() {
+    _keyboardVisibilityStream = _keyboardVisibilityController.onChange.listen(
+      (_event) {
+        _database.updateChatData(
+          _chatId,
+          {'is_activity': _event},
+        );
+      },
+    );
   }
 
   //* =============== Media Type messages =======================
@@ -110,6 +141,7 @@ class ChatPageProvider extends ChangeNotifier {
     _database.deleteChat(_chatId);
   }
 
+// * Go Back to previous screen
   void goBack() {
     _navigation.goBack();
   }

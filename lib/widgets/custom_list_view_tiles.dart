@@ -9,8 +9,66 @@ import '../widgets/rounded_image_network.dart';
 import '../widgets/text_message_bubbles.dart';
 
 // Models
-// import '../models/chat_message_model.dart';
-// import '../models/chat_user_model.dart';
+import '../models/chat_message_model.dart';
+import '../models/chat_user_model.dart';
+
+// * ListViewTile for Users Page
+class CustomListViewTile extends StatelessWidget {
+  const CustomListViewTile({
+    Key? key,
+    required this.height,
+    required this.title,
+    required this.subtitle,
+    required this.imagePath,
+    required this.isActive,
+    required this.isSelected,
+    required this.onTap,
+  }) : super(key: key);
+
+  final double height;
+  final String title;
+  final String subtitle;
+  final String imagePath;
+  final bool isActive;
+  final bool isSelected;
+  final Function onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: const TextStyle(
+          color: Colors.white54,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      minVerticalPadding: height * .20,
+      leading: RoundedIMageNetworkWithStatusIndicator(
+        key: UniqueKey(),
+        imagePath: imagePath,
+        size: height / 2,
+        isActive: isActive,
+      ),
+      trailing: isSelected
+          ? const Icon(
+              Icons.check,
+              color: Colors.white,
+            )
+          : null,
+      onTap: () => onTap,
+    );
+  }
+}
 
 class CustomListViewTileWithActivity extends StatelessWidget {
   const CustomListViewTileWithActivity({
@@ -106,7 +164,7 @@ class CustomChatListViewTile extends StatelessWidget {
           !isOwnMessage
               ? RoundedImageNetwork(
                   imagePath: sender.imageUrl,
-                  size: width * .04,
+                  size: width * .08,
                 )
               : Container(),
           SizedBox(
