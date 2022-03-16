@@ -21,10 +21,11 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] Test B
 
 **Test Configuration**:
-* Firmware version:
-* Hardware:
-* Toolchain:
-* SDK:
+
+- Firmware version:
+- Hardware:
+- Toolchain:
+- SDK:
 
 # Checklist:
 
@@ -36,3 +37,11 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] Any dependent changes have been merged and published in downstream modules
+
+## Contribution checklist
+
+When opening an issue or pull request, please use this template in your comment:
+
+- [ ] I have read the contribution guidelines at [CONTRIBUTING.md](CONTRIBUTING.md)
+- [ ] I have checked other issues/PRs to make sure this is not a duplicate
+- [ ] I agree that my contribution is subject to this project's [MIT License](LICENSE.md)
