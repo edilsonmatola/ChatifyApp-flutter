@@ -87,16 +87,6 @@ git merge upstream/develop
 git add <file-name>
 ```
 
-### ⚠️ Before Uploading
-
-- Update the version:
-  - if it is only a bug fix, increase the last digit.
-  - if it provides a new feature, increase the middle digit.
-  - if it has breaking changes, you should increase the first digit.
-- Then, mention all the changes in the CHANGELOG.md.
-- Merge into main.
-- Upload to Pub Dart.
-
 ```bash
 git commit -m "<your_commit_message>"
 ```
