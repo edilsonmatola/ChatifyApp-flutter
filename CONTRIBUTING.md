@@ -127,7 +127,7 @@ When opening an issue or pull request, please use this template in your comment:
 
 ## 💥 Issues
 
-In order to discuss changes, you are welcome to [open an issue](https://github.com/edilsonmatola/PChatifyApp-flutter/issues/new/choose) about what you would like to contribute. Enhancements are always encouraged and appreciated.
+In order to discuss changes, you are welcome to [open an issue](https://github.com/edilsonmatola/ChatifyApp-flutter/issues/new/choose) about what you would like to contribute. Enhancements are always encouraged and appreciated.
 
 ## All the best! 🥇
 
