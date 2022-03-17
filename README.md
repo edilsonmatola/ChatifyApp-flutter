@@ -4,7 +4,6 @@ This is a flutter based modern messaging app where users can sign up and log in 
 
 It uses Firebase Cloud Firestore as well as the Firebase Authentication and Firebase Storage package which equips this app with a cloud-based NoSQL database and secure authentication methods.
 
-  
 ### Dependencies
 
 1. [Firebase_Core](https://pub.dev/packages/firebase_core)
@@ -29,18 +28,31 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 
 1. [Timeago](https://pub.dev/packages/timeago)
 
-## Setup
+## Installation
 
-  ##### Clone the repository
+##### 1. Clone the repository
+
 ```bash
 git clone https://github.com/edilsonmatola/ChatifyApp-flutter.git
 ```
-  ##### Move to the desired folder
+
+##### 2. Move to the desired folder
+
 ```bash
 cd ChatifyApp-flutter
 ```
 
-  ##### To run the app, simply write
+4. Create Firebase Project
+5. Enable Authentication
+6. Make Firestore Rules
+7. Create Android, iOS & Web Apps
+
+##### To run the app, simply write the following commands:
+
 ```bash
+flutter pub get
+# flutter emulators --launch "emulator_id" (to get Android Simulator)
+open -a simulator (to get iOS Simulator)
 flutter run
+flutter run -d chrome --web-renderer html (to see the best output)
 ```
