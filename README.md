@@ -42,12 +42,12 @@ git clone https://github.com/edilsonmatola/ChatifyApp-flutter.git
 cd ChatifyApp-flutter
 ```
 
-4. Create Firebase Project
-5. Enable Authentication
-6. Make Firestore Rules
-7. Create Android, iOS & Web Apps
+3. Create Firebase Project
+4. Enable Authentication
+5. Make Firestore Rules
+6. Create Android, iOS & Web Apps
 
-##### To run the app, simply write the following commands:
+##### 7. To run the app, simply write the following commands:
 
 ```bash
 flutter pub get
