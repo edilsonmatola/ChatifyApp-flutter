@@ -1,3 +1,13 @@
+<details>
+<summary>
+<strong> Read this guide in Portuguese </strong>
+</summary>
+    <ul>
+        <li><a href="./README-PT-BR.md"> Português</a></li>
+    </ul>
+
+</details>
+
 # Chattify App
 
 This is a flutter based modern messaging app where users can sign up and log in to chat with their friends, family, colleagues among groups with enriched User-Experience.
