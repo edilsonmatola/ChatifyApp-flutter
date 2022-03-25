@@ -1,6 +1,6 @@
 <details>
 <summary>
-<strong> Leia este guia em Inglês. </strong>
+<strong> Read this Guide in English </strong>
 </summary>
     <ul>
         <li><a href="./README.md"> English </a></li>
