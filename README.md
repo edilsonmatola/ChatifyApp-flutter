@@ -1,9 +1,9 @@
 <details>
 <summary>
-<strong> Read this guide in Portuguese </strong>
+<strong> Leia este guia em Português </strong>
 </summary>
     <ul>
-        <li><a href="./README-PT-BR.md"> Português</a></li>
+        <li><a href="./README-PT-BR.md"> Português </a></li>
     </ul>
 
 </details>
