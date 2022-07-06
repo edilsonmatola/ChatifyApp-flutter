@@ -19,16 +19,17 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-          fillColor: const Color.fromRGBO(30, 29, 27, 1),
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Colors.white54,
-          )),
+        fillColor: const Color.fromRGBO(30, 29, 27, 1),
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          color: Colors.white54,
+        ),
+      ),
       style: const TextStyle(
         color: Colors.white,
       ),
@@ -44,14 +45,14 @@ class CustomTextFormField extends StatelessWidget {
 
 // * Search Bar for Users Page
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {Key? key,
-      required this.onEditingComplete,
-      required this.hintText,
-      required this.obscureText,
-      required this.controller,
-      this.icon})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    required this.onEditingComplete,
+    required this.hintText,
+    required this.obscureText,
+    required this.controller,
+    this.icon,
+  }) : super(key: key);
 
   final Function(String) onEditingComplete;
   final String hintText;
