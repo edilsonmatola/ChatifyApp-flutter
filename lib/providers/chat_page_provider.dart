@@ -71,7 +71,7 @@ class ChatPageProvider extends ChangeNotifier {
           messages = _messages;
           notifyListeners();
           // * Go to the last sent message
-          WidgetsBinding.instance!.addPostFrameCallback((_) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
             if (_messagesListViewController.hasClients) {
               _messagesListViewController.jumpTo(
                 _messagesListViewController.position.maxScrollExtent,
