@@ -1,3 +1,4 @@
+import 'package:chatifyapp/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Packages
@@ -10,7 +11,7 @@ import './services/navigation_service.dart';
 import 'package:chatifyapp/providers/authentication_provider.dart';
 
 // pages
-import './pages/splash_page.dart';
+import './pages/splash_page.dart';  
 import './pages/login_page.dart';
 import './pages/register_page.dart';
 import './pages/home_page.dart';
@@ -41,10 +42,10 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Chatify',
         theme: ThemeData(
-          backgroundColor: const Color.fromRGBO(36, 35, 49, 1),
-          scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1),
+          backgroundColor: AppColors.primaryColor,
+          scaffoldBackgroundColor: AppColors.primaryColor,
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Color.fromRGBO(30, 29, 37, 1),
+            backgroundColor: AppColors.secondaryColor,
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,

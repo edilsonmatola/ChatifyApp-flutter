@@ -1,3 +1,4 @@
+import 'package:chatifyapp/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 // packages
@@ -41,8 +42,8 @@ class _SplashPageState extends State<SplashPage> {
       debugShowCheckedModeBanner: false,
       title: 'Chatify',
       theme: ThemeData(
-        backgroundColor: const Color.fromRGBO(36, 35, 49, 1),
-        scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1),
+        backgroundColor: AppColors.primaryColor,
+        scaffoldBackgroundColor: AppColors.primaryColor,
       ),
       home: Scaffold(
         // Splash Image on Initialization
@@ -53,9 +54,7 @@ class _SplashPageState extends State<SplashPage> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
-                image: AssetImage(
-                  'assets/images/logo.png',
-                ),
+                image: AssetImage(AppAssets.logo),
               ),
             ),
           ),
