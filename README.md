@@ -14,6 +14,34 @@ This is a flutter based modern messaging app where users can sign up and log in 
 
 It uses Firebase Cloud Firestore as well as the Firebase Authentication and Firebase Storage package which equips this app with a cloud-based NoSQL database and secure authentication methods.
 
+## Demo
+
+<img src="./assets/preview/preview_1.png" width="35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./assets/preview/preview_2.png" width="35%">
+
+## Installation
+
+##### 1. Clone the repository
+
+```bash
+git clone https://github.com/edilsonmatola/food_delivery_ui_flutter.git
+```
+
+##### 2. Move to the desired folder
+
+```bash
+cd food_delivery_ui_flutter
+```
+
+##### 3. To run the app, simply write the following commands:
+
+```bash
+flutter pub get
+# flutter emulators --launch "emulator_id" (to get Android Simulator)
+open -a simulator (to get iOS Simulator)
+flutter run
+flutter run -d chrome --web-renderer html (to see the best output)
+```
+
 ### Dependencies
 
 1. [Firebase_Core](https://pub.dev/packages/firebase_core)
