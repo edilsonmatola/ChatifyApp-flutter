@@ -1,4 +1,5 @@
 // Packages
+import 'package:chatifyapp/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +83,7 @@ class _ChatsPageState extends State<ChatsPage> {
                   },
                   icon: const Icon(
                     Icons.logout_outlined,
-                    color: Color.fromRGBO(0, 82, 218, 1),
+                    color: AppColors.appPrimaryIconColor,
                   ),
                 ),
               ),

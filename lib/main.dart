@@ -11,7 +11,7 @@ import './services/navigation_service.dart';
 import 'package:chatifyapp/providers/authentication_provider.dart';
 
 // pages
-import './pages/splash_page.dart';  
+import './pages/splash_page.dart';
 import './pages/login_page.dart';
 import './pages/register_page.dart';
 import './pages/home_page.dart';
@@ -42,10 +42,10 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Chatify',
         theme: ThemeData(
-          backgroundColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.appPrimaryBackgroundColor,
+          scaffoldBackgroundColor: AppColors.appPrimaryBackgroundColor,
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: AppColors.secondaryColor,
+            backgroundColor: AppColors.appSecondaryBackgroundColor,
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,
