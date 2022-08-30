@@ -1,20 +1,11 @@
-import 'package:chatifyapp/constants/app_colors.dart';
+import 'package:chatifyapp/src/core/constants/constants.dart';
+import 'package:chatifyapp/src/features/home/presentation/home_page.dart';
+import 'package:chatifyapp/src/features/splash/presentation/splash_page.dart';
 import 'package:flutter/material.dart';
-
-// Packages
 import 'package:provider/provider.dart';
 
-// Services
-import './services/navigation_service.dart';
-
-// Providers
-import 'package:chatifyapp/providers/authentication_provider.dart';
-
-// pages
-import './pages/splash_page.dart';
-import './pages/login_page.dart';
-import './pages/register_page.dart';
-import './pages/home_page.dart';
+import 'src/domain/domain.dart';
+import 'src/features/authentication/authentication.dart';
 
 void main() {
   runApp(
