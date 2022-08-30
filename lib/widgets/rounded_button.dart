@@ -1,3 +1,4 @@
+import 'package:chatifyapp/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -19,7 +20,7 @@ class RoundedButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(height * .25),
-        color: const Color.fromRGBO(0, 82, 218, 1),
+        color: AppColors.appPrimaryIconColor,
       ),
       width: width,
       height: height,

@@ -1,4 +1,5 @@
 // Packages
+import 'package:chatifyapp/constants/constants.dart';
 import 'package:chatifyapp/providers/chat_page_provider.dart';
 import 'package:chatifyapp/widgets/custom_input_fields.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class _ChatPageState extends State<ChatPage> {
                       },
                       icon: const Icon(
                         Icons.delete,
-                        color: Color.fromRGBO(0, 82, 218, 1),
+                        color: AppColors.appPrimaryIconColor,
                       ),
                     ),
                     secondaryAction: IconButton(
@@ -98,7 +99,7 @@ class _ChatPageState extends State<ChatPage> {
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios,
-                        color: Color.fromRGBO(0, 82, 218, 1),
+                        color: AppColors.appPrimaryIconColor,
                       ),
                     ),
                   ),
@@ -161,7 +162,7 @@ class _ChatPageState extends State<ChatPage> {
     return Container(
       height: _deviceHeight * .06,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(30, 29, 37, 1),
+        color: AppColors.appSecondaryBackgroundColor,
         borderRadius: BorderRadius.circular(100),
       ),
       margin: EdgeInsets.symmetric(
@@ -227,12 +228,13 @@ class _ChatPageState extends State<ChatPage> {
       width: _size,
       height: _size,
       child: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(0, 82, 218, 1),
+        backgroundColor: AppColors.appPrimaryIconColor,
         onPressed: () {
           _pageProvider.sendImageMessage();
         },
         child: const Icon(
           Icons.camera_alt,
+          color: AppColors.appPrimaryIconColor,
         ),
       ),
     );

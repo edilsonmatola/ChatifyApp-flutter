@@ -1,3 +1,5 @@
+import 'package:chatifyapp/constants/app_colors.dart';
+import 'package:chatifyapp/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 // Packages
@@ -24,8 +26,8 @@ class TextMessageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> _colorScheme = isOwnMessage
         ? [
-            const Color.fromRGBO(0, 136, 249, 1),
-            const Color.fromRGBO(0, 82, 218, 1),
+            AppColors.appOwnMessageBubbleColor,
+            AppColors.appPrimaryBackgroundColor,
           ]
         : [
             const Color.fromRGBO(51, 49, 68, 1),
