@@ -14,7 +14,7 @@ class RoundedButton extends StatelessWidget {
   final String name;
   final double height;
   final double width;
-  final Function onPress;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RoundedButton extends StatelessWidget {
       width: width,
       height: height,
       child: TextButton(
-        onPressed: () => onPress(),
+        onPressed: () => onPress,
         child: Text(
           name,
           style: const TextStyle(
