@@ -51,7 +51,17 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _pageTitle(),
+              SizedBox(
+                height: _deviceHeight * .10,
+                child: const Text(
+                  'Chatify',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: _deviceHeight * .04,
               ),
@@ -59,27 +69,31 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: _deviceHeight * .05,
               ),
-              _loginButton(),
+              RoundedButton(
+                name: 'Login',
+                width: _deviceWidth * .65,
+                height: _deviceHeight * .075,
+                onPress: () {
+                  if (_loginFormKey.currentState!.validate()) {
+                    _loginFormKey.currentState!.save();
+                    _auth.loginUsingEmailAndPassword(_email!, _password!);
+                  }
+                },
+              ),
               SizedBox(
                 height: _deviceHeight * .02,
               ),
-              _registerAccountLink(),
+              TextButton(
+                onPressed: () => _navigationService.nagivateRoute('/register'),
+                child: const Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _pageTitle() {
-    return SizedBox(
-      height: _deviceHeight * .10,
-      child: const Text(
-        'Chatify',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 40,
-          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -120,32 +134,6 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _loginButton() {
-    return RoundedButton(
-      name: 'Login',
-      width: _deviceWidth * .65,
-      height: _deviceHeight * .075,
-      onPress: () {
-        if (_loginFormKey.currentState!.validate()) {
-          _loginFormKey.currentState!.save();
-          _auth.loginUsingEmailAndPassword(_email!, _password!);
-        }
-      },
-    );
-  }
-
-  Widget _registerAccountLink() {
-    return GestureDetector(
-      onTap: () => _navigationService.nagivateRoute('/register'),
-      child: const Text(
-        "Don't have an account?",
-        style: TextStyle(
-          color: Colors.blueAccent,
         ),
       ),
     );
