@@ -83,7 +83,15 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: _deviceHeight * .02,
               ),
-              _registerAccountLink(),
+              TextButton(
+                onPressed: () => _navigationService.nagivateRoute('/register'),
+                child: const Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -126,18 +134,6 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _registerAccountLink() {
-    return GestureDetector(
-      onTap: () => _navigationService.nagivateRoute('/register'),
-      child: const Text(
-        "Don't have an account?",
-        style: TextStyle(
-          color: Colors.blueAccent,
         ),
       ),
     );
