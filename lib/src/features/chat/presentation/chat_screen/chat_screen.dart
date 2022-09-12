@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/constants/constants.dart';
-import '../../../authentication/authentication.dart';
+import '../../../../core/constants/constants_export.dart';
+import '../../../authentication/authentication_export.dart';
 import '../../../contacts/widgets/widgets.dart';
 import '../../../groups/groups.dart';
 import '../../chat.dart';
@@ -20,7 +20,7 @@ class _ChatPageState extends State<ChatPage> {
   late double _deviceWidth;
   late double _deviceHeight;
 
-  late AuthenticationProvider _auth;
+  late AuthenticationProviderService _auth;
   late ChatPageProvider _pageProvider;
 
   late GlobalKey<FormState> _messageFormState;
@@ -38,7 +38,7 @@ class _ChatPageState extends State<ChatPage> {
     // * Initializations
     _deviceWidth = MediaQuery.of(context).size.width;
     _deviceHeight = MediaQuery.of(context).size.height;
-    _auth = Provider.of<AuthenticationProvider>(context);
+    _auth = Provider.of<AuthenticationProviderService>(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ChatPageProvider>(
