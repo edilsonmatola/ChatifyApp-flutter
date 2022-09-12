@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../application/application_export.dart';
 import '../../application/authentication_provider_service.dart';
-import '../../widgets/widgets.dart';
+import '../../widgets/widgets_export.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: _deviceHeight * .05,
               ),
-              RoundedButton(
+              CustomRoundedButtonWidget(
                 name: 'Login',
                 width: _deviceWidth * .65,
                 height: _deviceHeight * .075,

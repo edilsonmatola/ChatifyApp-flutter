@@ -6,29 +6,29 @@ import 'package:get_it/get_it.dart';
 // Services
 
 // Widgets
-import '../../../../domain/database_service.dart';
-import '../../../../domain/domain.dart';
-import '../../services/authentication_provider.dart';
+import '../../../../application/firestore_database_service/database_service.dart';
+import '../../../../application/application_export.dart';
+import '../../application/authentication_provider_service.dart';
 
 // Providers
 import 'package:provider/provider.dart';
 
-import '../../widgets/widgets.dart';
+import '../../widgets/widgets_export.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterScreenState extends State<RegisterScreen> {
 // * Responsive layout
   late double _deviceWidth;
   late double _deviceHeight;
 
   //* Store reference Provider
-  late AuthenticationProvider _auth;
+  late AuthenticationProviderService _auth;
   //* Store database reference Provider
   late DatabaseService _database;
   //* Store cloud storage reference
@@ -49,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     // * The auth provider will work because we wrapped our mainApp with MultiProvider
-    _auth = Provider.of<AuthenticationProvider>(context);
+    _auth = Provider.of<AuthenticationProviderService>(context);
     _database = GetIt.instance.get<DatabaseService>();
     _cloudStorageService = GetIt.instance.get<CloudStorageService>();
 
@@ -115,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         } else {
           // Default Image
-          return RoundedImageNetwork(
+          return RoundedImageNetworkWidget(
             key: UniqueKey(),
             size: _deviceHeight * .15,
             imagePath:
@@ -179,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
 // TODO: Futuramente, mudar o nome de Register => Sign up e colocar texto Sign up em bold
   Widget _registerButton() {
-    return RoundedButton(
+    return CustomRoundedButtonWidget(
       name: 'Register',
       width: _deviceWidth * .65,
       height: _deviceHeight * .075,
