@@ -49,59 +49,55 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ),
       ],
-      child: _buildUI(),
-    );
-  }
-
-  Widget _buildUI() {
-    return Builder(
-      builder: (_context) {
-        _pageProvider = _context.watch<ChatPageProvider>();
-        return Scaffold(
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: _deviceWidth * .03,
-                vertical: _deviceHeight * .02,
-              ),
-              width: _deviceWidth,
-              height: _deviceHeight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TopBar(
-                    widget.chat.title(),
-                    fontSize: 16,
-                    primaryAction: IconButton(
-                      onPressed: () {
-                        _pageProvider.deleteChat();
-                      },
-                      icon: const Icon(
-                        Icons.delete,
-                        color: AppColors.appPrimaryIconColor,
+      child: Builder(
+        builder: (_context) {
+          _pageProvider = _context.watch<ChatPageProvider>();
+          return Scaffold(
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: _deviceWidth * .03,
+                  vertical: _deviceHeight * .02,
+                ),
+                width: _deviceWidth,
+                height: _deviceHeight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TopBar(
+                      widget.chat.title(),
+                      fontSize: 16,
+                      primaryAction: IconButton(
+                        onPressed: () {
+                          _pageProvider.deleteChat();
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          color: AppColors.appPrimaryIconColor,
+                        ),
+                      ),
+                      secondaryAction: IconButton(
+                        onPressed: () {
+                          _pageProvider.goBack();
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.appPrimaryIconColor,
+                        ),
                       ),
                     ),
-                    secondaryAction: IconButton(
-                      onPressed: () {
-                        _pageProvider.goBack();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.appPrimaryIconColor,
-                      ),
-                    ),
-                  ),
-                  _messagesListView(),
-                  _sendMessageForm(),
-                ],
+                    _messagesListView(),
+                    _sendMessageForm(),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
