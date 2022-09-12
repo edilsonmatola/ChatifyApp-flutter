@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../application/application_export.dart';
-import '../../services/authentication_provider.dart';
+import '../../application/authentication_provider_service.dart';
 import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late double _deviceWidth;
   late double _deviceHeight;
 
-  late AuthenticationProvider _auth;
+  late AuthenticationProviderService _auth;
   late NavigationService _navigationService;
 
   final _loginFormKey = GlobalKey<FormState>();
@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     _deviceWidth = MediaQuery.of(context).size.width;
     _deviceHeight = MediaQuery.of(context).size.height;
-    _auth = Provider.of<AuthenticationProvider>(context);
+    _auth = Provider.of<AuthenticationProviderService>(context);
     _navigationService = GetIt.instance.get<NavigationService>();
     return _buildUI();
   }
