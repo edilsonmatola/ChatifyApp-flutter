@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 // Providers
 import '../../../authentication/application/authentication_provider_service.dart';
 import '../../../authentication/widgets/widgets_export.dart';
-import '../../contacts.dart';
+import '../../contacts_export.dart';
 import '../../application/user_screen_service/users_page_provider.dart';
 import '../../widgets/custom_list_view_tiles.dart';
 // Widgets
