@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 // Models
-import '../../../core/constants/constants.dart';
+import '../../../core/constants/constants_export.dart';
 import '../models/chat_message_model.dart';
 
-class TextMessageBubble extends StatelessWidget {
-  const TextMessageBubble({
+class TextMessageBubbleWidget extends StatelessWidget {
+  const TextMessageBubbleWidget({
     Key? key,
     required this.isOwnMessage,
     required this.message,
