@@ -164,7 +164,7 @@ class CustomChatListViewTile extends StatelessWidget {
             width: width * .05,
           ),
           message.type == MessageType.text
-              ? TextMessageBubble(
+              ? TextMessageBubbleWidget(
                   isOwnMessage: isOwnMessage,
                   message: message,
                   width: width,
