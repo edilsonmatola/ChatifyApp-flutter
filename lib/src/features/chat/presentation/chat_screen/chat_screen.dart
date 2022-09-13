@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/constants/constants_export.dart';
 import '../../../authentication/authentication_export.dart';
-import '../../../contacts/widgets/widgets.dart';
+import '../../../contacts/widgets/widgets_export.dart';
 import '../../../groups/groups.dart';
-import '../../chat.dart';
+import '../../chat_export.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key, required this.chat}) : super(key: key);
@@ -67,7 +67,7 @@ class _ChatPageState extends State<ChatPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TopBar(
+                    CustomTopBar(
                       widget.chat.title(),
                       fontSize: 16,
                       primaryAction: IconButton(
