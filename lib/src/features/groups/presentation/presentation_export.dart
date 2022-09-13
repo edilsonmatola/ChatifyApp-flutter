@@ -1,1 +1,1 @@
-export 'group_screen/chats_page.dart';
+export 'group_screen/chats_screen.dart';
