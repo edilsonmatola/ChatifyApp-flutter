@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../core/constants/constants.dart';
-import '../../../../domain/database_service.dart';
-import '../../../../domain/domain.dart';
+import '../../../../core/constants/constants_export.dart';
+import '../../../../application/firestore_database_service/database_service.dart';
+import '../../../../application/application_export.dart';
 
 // Services
 
