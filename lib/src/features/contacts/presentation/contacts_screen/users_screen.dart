@@ -9,7 +9,7 @@ import '../../contacts.dart';
 import '../../application/user_screen_service/users_page_provider.dart';
 import '../../widgets/custom_list_view_tiles.dart';
 // Widgets
-import '../../widgets/top_bar.dart';
+import '../../widgets/custom_top_bar.dart';
 
 // Models
 
@@ -60,7 +60,7 @@ class _UsersPageState extends State<UsersPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            TopBar(
+            CustomTopBar(
               'Users',
               primaryAction: IconButton(
                 onPressed: () {
