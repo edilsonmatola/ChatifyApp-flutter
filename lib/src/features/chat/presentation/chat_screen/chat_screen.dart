@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/constants/constants_export.dart';
 import '../../../authentication/authentication_export.dart';
 import '../../../contacts/widgets/widgets_export.dart';
-import '../../../groups/groups.dart';
+import '../../../groups/groups_export.dart';
 import '../../chat_export.dart';
 
 class ChatPage extends StatefulWidget {
