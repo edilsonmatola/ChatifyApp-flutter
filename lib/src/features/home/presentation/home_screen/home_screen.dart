@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Pages
 import '../../../contacts/contacts_export.dart';
-import '../../../groups/presentation/group_screen/chats_page.dart';
+import '../../../groups/presentation/group_screen/chats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,8 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentPage = 0;
   // * Pages to display and navigate
   final List<Widget> _pages = [
-    const ChatsPage(),
-    const UsersPage(),
+    const ChatsScreen(),
+    const UsersScreen(),
   ];
 
   @override
