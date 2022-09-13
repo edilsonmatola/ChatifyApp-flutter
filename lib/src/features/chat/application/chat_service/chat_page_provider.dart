@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../application/firestore_database_service/database_service.dart';
 import '../../../../application/application_export.dart';
 import '../../../authentication/application/authentication_provider_service.dart';
-import '../../chat.dart';
+import '../../chat_export.dart';
 
 // Models
 

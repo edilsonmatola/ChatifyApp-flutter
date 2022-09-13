@@ -11,7 +11,7 @@ import '../../../../application/firestore_database_service/database_service.dart
 import '../../../authentication/application/authentication_provider_service.dart';
 
 // Models
-import '../../../contacts/contacts.dart';
+import '../../../contacts/contacts_export.dart';
 import '../../models/chat_message_model.dart';
 import '../../../groups/models/chats_model.dart';
 

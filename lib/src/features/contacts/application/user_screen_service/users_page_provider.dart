@@ -6,9 +6,9 @@ import 'package:get_it/get_it.dart';
 import '../../../../application/application_export.dart';
 // Providers
 import '../../../../application/firestore_database_service/database_service.dart';
-import '../../../chat/chat.dart';
-import '../../../groups/groups.dart';
-import '../../contacts.dart';
+import '../../../chat/chat_export.dart';
+import '../../../groups/groups_export.dart';
+import '../../contacts_export.dart';
 
 // Models
 

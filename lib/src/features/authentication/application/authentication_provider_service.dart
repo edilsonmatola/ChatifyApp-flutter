@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../application/firestore_database_service/database_service.dart';
 import '../../../application/application_export.dart';
-import '../../contacts/contacts.dart';
+import '../../contacts/contacts_export.dart';
 
 class AuthenticationProviderService extends ChangeNotifier {
   AuthenticationProviderService() {

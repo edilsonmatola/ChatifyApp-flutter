@@ -13,14 +13,14 @@ import '../../widgets/custom_top_bar.dart';
 
 // Models
 
-class UsersPage extends StatefulWidget {
-  const UsersPage({Key? key}) : super(key: key);
+class UsersScreen extends StatefulWidget {
+  const UsersScreen({Key? key}) : super(key: key);
 
   @override
-  _UsersPageState createState() => _UsersPageState();
+  _UsersScreenState createState() => _UsersScreenState();
 }
 
-class _UsersPageState extends State<UsersPage> {
+class _UsersScreenState extends State<UsersScreen> {
   late double _deviceWidth;
   late double _deviceHeight;
 
