@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../authentication/widgets/widgets.dart';
-import '../../chat/chat.dart';
-import '../contacts.dart';
+import '../../authentication/widgets/widgets_export.dart';
+import '../../chat/chat_export.dart';
+import '../contacts_export.dart';
 
 // * ListViewTile for Users Page
 class CustomListViewTile extends StatelessWidget {
@@ -155,7 +155,7 @@ class CustomChatListViewTile extends StatelessWidget {
             isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           !isOwnMessage
-              ? RoundedImageNetwork(
+              ? RoundedImageNetworkWidget(
                   imagePath: sender.imageUrl,
                   size: width * .08,
                 )

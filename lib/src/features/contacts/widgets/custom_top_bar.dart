@@ -1,8 +1,8 @@
 // Packages
 import 'package:flutter/material.dart';
 
-class TopBar extends StatefulWidget {
-  const TopBar(
+class CustomTopBar extends StatefulWidget {
+  const CustomTopBar(
     this._barTitle, {
     Key? key,
     this.primaryAction,
@@ -16,10 +16,10 @@ class TopBar extends StatefulWidget {
   final double? fontSize;
 
   @override
-  State<TopBar> createState() => _TopBarState();
+  State<CustomTopBar> createState() => _CustomTopBarState();
 }
 
-class _TopBarState extends State<TopBar> {
+class _CustomTopBarState extends State<CustomTopBar> {
   late double _deviceWidth;
 
   late double _deviceHeight;
