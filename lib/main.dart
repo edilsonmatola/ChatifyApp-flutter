@@ -1,15 +1,15 @@
-import 'package:chatifyapp/src/core/constants/constants.dart';
-import 'package:chatifyapp/src/features/home/presentation/home_page.dart';
-import 'package:chatifyapp/src/features/splash/presentation/splash_page.dart';
+import 'package:chatifyapp/src/core/constants/constants_export.dart';
+import 'package:chatifyapp/src/features/authentication/authentication_export.dart';
+import 'package:chatifyapp/src/features/home/presentation/home_screen/home_screen.dart';
+import 'package:chatifyapp/src/features/splash/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'src/domain/domain.dart';
-import 'src/features/authentication/authentication.dart';
+import 'src/application/application_export.dart';
 
 void main() {
   runApp(
-    SplashPage(
+    SplashScreen(
       key: UniqueKey(),
       onInitializationComplete: () => runApp(
         const MainApp(),
@@ -25,8 +25,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthenticationProvider>(
-          create: (BuildContext _context) => AuthenticationProvider(),
+        ChangeNotifierProvider<AuthenticationProviderService>(
+          create: (BuildContext _context) => AuthenticationProviderService(),
         ),
       ],
       child: MaterialApp(
@@ -42,9 +42,9 @@ class MainApp extends StatelessWidget {
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
         routes: {
-          '/login': (BuildContext _context) => const LoginPage(),
-          '/register': (BuildContext _context) => const RegisterPage(),
-          '/home': (BuildContext _context) => const HomePage(),
+          '/login': (BuildContext _context) => const LoginScreen(),
+          '/register': (BuildContext _context) => const RegisterScreen(),
+          '/home': (BuildContext _context) => const HomeScreen(),
         },
       ),
     );
