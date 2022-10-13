@@ -4,6 +4,7 @@ import 'package:chatifyapp/src/features/home/presentation/home_screen/home_scree
 import 'package:chatifyapp/src/features/splash/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'src/application/application_export.dart';
 
@@ -30,6 +31,16 @@ class MainApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        builder: (context, widget) => ResponsiveWrapper.builder(
+          ClampingScrollWrapper.builder(context, widget!),
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(350, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(600, name: TABLET),
+            const ResponsiveBreakpoint.resize(800, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(1200, name: 'XL'),
+            const ResponsiveBreakpoint.autoScale(1700, name: '4K'),
+          ],
+        ),
         debugShowCheckedModeBanner: false,
         title: 'Chatify',
         theme: ThemeData(
