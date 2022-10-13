@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
         scaffoldBackgroundColor: AppColors.appPrimaryBackgroundColor,
       ),
       home: Scaffold(
-        // Splash Image on Initialization
+        //* Splash Image on Initialization
         body: Center(
           child: Container(
             height: 200,
@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   // App & Firebase Services
-  void _registerServices() {
+  Future<void> _registerServices() async {
     // Creating a new instance of the Navigation Service
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
