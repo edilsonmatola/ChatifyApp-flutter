@@ -32,10 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
     _deviceHeight = MediaQuery.of(context).size.height;
     _auth = Provider.of<AuthenticationProviderService>(context);
     _navigationService = GetIt.instance.get<NavigationService>();
-    return _buildUI();
-  }
-
-  Widget _buildUI() {
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -98,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 
   Widget _loginForm() {
     return SizedBox(
