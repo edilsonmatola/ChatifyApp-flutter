@@ -42,22 +42,18 @@ class _CustomTopBarState extends State<CustomTopBar> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (widget.secondaryAction != null) widget.secondaryAction!,
-          _titleBar(),
+          Text(
+            widget._barTitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widget.fontSize,
+              fontWeight: FontWeight.w700,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
           if (widget.primaryAction != null) widget.primaryAction!,
         ],
       ),
-    );
-  }
-
-  Widget _titleBar() {
-    return Text(
-      widget._barTitle,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: widget.fontSize,
-        fontWeight: FontWeight.w700,
-      ),
-      overflow: TextOverflow.ellipsis,
     );
   }
 }
