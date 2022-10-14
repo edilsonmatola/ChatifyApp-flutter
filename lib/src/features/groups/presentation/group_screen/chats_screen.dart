@@ -45,45 +45,41 @@ class _ChatsScreenState extends State<ChatsScreen> {
           create: (_) => ChatsPageProvider(_auth),
         )
       ],
-      child: _buildUI(),
-    );
-  }
-
-  Widget _buildUI() {
-    return Builder(
-      builder: (_context) {
-        //* Triggers the info in the widgets to render themselves
-        _pageProvider = _context.watch<ChatsPageProvider>();
-        return Container(
-          width: _deviceWidth * .97,
-          height: _deviceHeight * .98,
-          padding: EdgeInsets.symmetric(
-            horizontal: _deviceWidth * .03,
-            vertical: _deviceHeight * .02,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CustomTopBar(
-                'Chats',
-                primaryAction: IconButton(
-                  onPressed: () {
-                    // * Logout the user if he/she presses the button icon
-                    _auth.logout();
-                  },
-                  icon: const Icon(
-                    Icons.logout_outlined,
-                    color: AppColors.appPrimaryIconColor,
+      child: Builder(
+        builder: (_context) {
+          //* Triggers the info in the widgets to render themselves
+          _pageProvider = _context.watch<ChatsPageProvider>();
+          return Container(
+            width: _deviceWidth * .97,
+            height: _deviceHeight * .98,
+            padding: EdgeInsets.symmetric(
+              horizontal: _deviceWidth * .03,
+              vertical: _deviceHeight * .02,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CustomTopBar(
+                  'Chats',
+                  primaryAction: IconButton(
+                    onPressed: () {
+                      // * Logout the user if he/she presses the button icon
+                      _auth.logout();
+                    },
+                    icon: const Icon(
+                      Icons.logout_outlined,
+                      color: AppColors.appPrimaryIconColor,
+                    ),
                   ),
                 ),
-              ),
-              _chatsList(),
-            ],
-          ),
-        );
-      },
+                _chatsList(),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
