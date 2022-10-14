@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../application/firestore_database_service/database_service.dart';
 import '../../../application/application_export.dart';
+import '../../../application/firestore_database_service/database_service.dart';
 import '../../contacts/contacts_export.dart';
 
 class AuthenticationProviderService extends ChangeNotifier {
@@ -67,10 +67,14 @@ class AuthenticationProviderService extends ChangeNotifier {
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
+      // TODO: Error snackbar
+
       debugPrint('${_auth.currentUser}');
     } on FirebaseAuthException {
       debugPrint('Error login user into Firebase.');
     } catch (e) {
+      // TODO: Error snackbar
+
       debugPrint('$e');
     }
   }
@@ -87,6 +91,8 @@ class AuthenticationProviderService extends ChangeNotifier {
     } on FirebaseAuthException {
       debugPrint('Error registering user.');
     } catch (error) {
+      // TODO: Error snackbar
+
       debugPrint('$error');
     }
     return null;
@@ -97,6 +103,7 @@ class AuthenticationProviderService extends ChangeNotifier {
     try {
       await _auth.signOut();
     } catch (error) {
+      // TODO: Error snackbar
       debugPrint('$error');
     }
   }
