@@ -1,2 +1,2 @@
-export 'models/models.dart';
+export 'models/models_export.dart';
 export 'presentation/presentation_export.dart';
