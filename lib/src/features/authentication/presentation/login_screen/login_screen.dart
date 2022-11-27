@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: _deviceHeight * .04,
               ),
-             SizedBox(
+              SizedBox(
                 height: _deviceHeight * .25,
                 child: Form(
                   key: _loginFormKey,
@@ -126,47 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-
-  Widget _loginForm() {
-    return SizedBox(
-      height: _deviceHeight * .25,
-      child: Form(
-        key: _loginFormKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Email Field
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _email = _value;
-                });
-              },
-              regularExpression:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-              hintText: 'Email',
-              obscureText: false,
-            ),
-            // Password Field
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _password = _value;
-                });
-              },
-              // Password longer than 8 chars
-              regularExpression: r".{8,}",
-              hintText: 'Password',
-              obscureText: true,
-            )
-          ],
         ),
       ),
     );
