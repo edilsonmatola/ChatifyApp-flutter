@@ -26,7 +26,7 @@ class CustomRoundedButtonWidget extends StatelessWidget {
       width: width,
       height: height,
       child: TextButton(
-        onPressed: () => onPress,
+        onPressed: onPress,
         child: Text(
           name,
           style: const TextStyle(
