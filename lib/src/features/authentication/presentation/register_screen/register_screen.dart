@@ -1,19 +1,15 @@
 // Packages
 import 'package:chatifyapp/src/core/utils/utils_export.dart';
-import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-
-// Services
-
-// Widgets
-import '../../../../application/firestore_database_service/database_service.dart';
-import '../../../../application/application_export.dart';
-import '../../application/authentication_provider_service.dart';
-
 // Providers
 import 'package:provider/provider.dart';
 
+import '../../../../application/application_export.dart';
+// Widgets
+import '../../../../application/firestore_database_service/database_service.dart';
+import '../../application/authentication_provider_service.dart';
 import '../../widgets/widgets_export.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -155,9 +151,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _email = _value;
                 });
               },
-              validator:
-                  (email) =>
-                            RegExpUtils().emailValidator(email!),
+              validator: (email) => RegExpUtils().emailValidator(email!),
               hintText: 'Email',
               obscureText: false,
             ),
@@ -169,8 +163,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _password = _value;
                 });
               },
-              validator: (password) =>
-                            RegExpUtils().passwordValidator(password!), //Password longer than 8 char
+              validator: (password) => RegExpUtils()
+                  .passwordValidator(password!), //Password longer than 8 char
               hintText: 'Password',
               obscureText: true,
             ),
