@@ -1,3 +1,4 @@
+import 'package:chatifyapp/src/core/utils/utils_export.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -77,8 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             _email = _value;
                           });
                         },
-                        regularExpression:
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                        validator: (email) =>
+                            RegExpUtils().emailValidator(email!),
                         hintText: 'Email',
                         obscureText: false,
                       ),
@@ -90,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                         // Password longer than 8 chars
-                        regularExpression: r".{8,}",
+                        validator: (password) =>
+                            RegExpUtils().passwordValidator(password!),
                         hintText: 'Password',
                         obscureText: true,
                       )

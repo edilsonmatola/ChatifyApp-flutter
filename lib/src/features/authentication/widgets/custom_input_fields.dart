@@ -4,13 +4,13 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     Key? key,
     required this.onSaved,
-    required this.regularExpression,
+    required this.validator,
     required this.hintText,
     required this.obscureText,
   }) : super(key: key);
 
   final Function(String) onSaved;
-  final String regularExpression;
+  final String? Function(String?)? validator;
   final String hintText;
   final bool obscureText;
 
@@ -36,9 +36,7 @@ class CustomTextFormField extends StatelessWidget {
       cursorColor: Colors.white,
       obscureText: obscureText,
       onSaved: (_value) => onSaved(_value!),
-      validator: (_value) => RegExp(regularExpression).hasMatch(_value!)
-          ? null
-          : 'Enter a valid value.',
+      validator: (_value) => validator!(_value),
     );
   }
 }
