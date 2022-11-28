@@ -1,5 +1,5 @@
 import '../../chat/models/chat_message_model.dart';
-import '../../contacts/contacts.dart';
+import '../../contacts/contacts_export.dart';
 
 class ChatsModel {
   final String uid;
@@ -42,6 +42,8 @@ class ChatsModel {
   String chatImageURL() {
     // * True ->  returns the user profileImage
     // * False -> returns an imageurl from the internet
-    return !group ? _recepients.first.imageUrl : 'https://image.pngaaa.com/574/3863574-middle.png';
+    return !group
+        ? _recepients.first.imageUrl
+        : 'https://image.pngaaa.com/574/3863574-middle.png';
   }
 }

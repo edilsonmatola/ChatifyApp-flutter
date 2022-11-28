@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-class RoundedImageNetwork extends StatelessWidget {
-  const RoundedImageNetwork({
+class RoundedImageNetworkWidget extends StatelessWidget {
+  const RoundedImageNetworkWidget({
     Key? key,
     required this.imagePath,
     required this.size,
@@ -71,7 +71,7 @@ class RoundedImageFile extends StatelessWidget {
 }
 
 // * Active or Not Icon
-class RoundedIMageNetworkWithStatusIndicator extends RoundedImageNetwork {
+class RoundedIMageNetworkWithStatusIndicator extends RoundedImageNetworkWidget {
   final bool isActive;
 
   const RoundedIMageNetworkWithStatusIndicator({
