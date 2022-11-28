@@ -1,4 +1,5 @@
 // Packages
+import 'package:chatifyapp/src/core/utils/utils_export.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
@@ -143,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _name = _value;
                 });
               },
-              regularExpression: r'.{8}',
+              validator: (name) => RegExpUtils().fullNameValidator(name!),
               hintText: 'Name',
               obscureText: false,
             ),
@@ -154,8 +155,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _email = _value;
                 });
               },
-              regularExpression:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              validator:
+                  (email) =>
+                            RegExpUtils().emailValidator(email!),
               hintText: 'Email',
               obscureText: false,
             ),
@@ -167,7 +169,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   _password = _value;
                 });
               },
-              regularExpression: r".{8,}", //Password longer than 8 char
+              validator: (password) =>
+                            RegExpUtils().passwordValidator(password!), //Password longer than 8 char
               hintText: 'Password',
               obscureText: true,
             ),
