@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         // Password longer than 8 chars
                         validator: (password) =>
-                            RegExpUtils().passwordValidator(password!,),
+                            RegExpUtils().passwordValidator(password!),
                         hintText: 'Password',
                         obscureText: true,
                       )
