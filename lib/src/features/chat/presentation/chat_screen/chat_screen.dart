@@ -178,7 +178,7 @@ class _ChatPageState extends State<ChatPage> {
       width: _deviceWidth * .65,
       child: CustomTextFormField(
         onSaved: (_value) => _pageProvider.message = _value,
-        regularExpression: r"^(?!\s*$).+",
+        validator: (message) => r"^(?!\s*$).+",
         hintText: 'Type a message',
         obscureText: false,
       ),
