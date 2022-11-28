@@ -1,4 +1,15 @@
 class RegExpUtils {
+  // * Validador de Nome Completo
+  String? fullNameValidator(String fullName) {
+    var message = '';
+    if (fullName.isEmpty) {
+      message = 'Insira o seu nome';
+    } else if (!RegExp(r'\b[a-z]|\d').hasMatch(fullName)) {
+      message = 'Insira um nome autentico';
+    }
+    return message;
+  }
+
   // * Validador de Email
   String? emailValidator(String email) {
     if (email.isEmpty) {
