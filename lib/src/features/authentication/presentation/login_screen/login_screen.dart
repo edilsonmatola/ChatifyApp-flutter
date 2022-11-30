@@ -82,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             RegExpUtils().emailValidator(email!),
                         hintText: 'Email',
                         obscureText: false,
+                        isSecret: false,
                       ),
                       // Password Field
                       CustomTextFormField(
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (password) =>
                             RegExpUtils().passwordValidator(password!),
                         hintText: 'Password',
-                        obscureText: true,
+                        obscureText: true, isSecret: true,
                       )
                     ],
                   ),

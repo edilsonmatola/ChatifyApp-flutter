@@ -143,6 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               validator: (name) => RegExpUtils().fullNameValidator(name!),
               hintText: 'Name',
               obscureText: false,
+              isSecret: false,
             ),
             // *Email Field
             CustomTextFormField(
@@ -154,6 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               validator: (email) => RegExpUtils().emailValidator(email!),
               hintText: 'Email',
               obscureText: false,
+              isSecret: false,
             ),
             // TODO: Add Hide/Show Password toggle
             // *Password Field
@@ -166,7 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               validator: (password) => RegExpUtils()
                   .passwordValidator(password!), //Password longer than 8 char
               hintText: 'Password',
-              obscureText: true,
+              obscureText: true, isSecret: true,
             ),
           ],
         ),
