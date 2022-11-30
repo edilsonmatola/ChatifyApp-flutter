@@ -6,13 +6,14 @@ class CustomTextFormField extends StatelessWidget {
     required this.onSaved,
     required this.validator,
     required this.hintText,
-    required this.obscureText,
+     this.obscureText = false, required this.isSecret,
   }) : super(key: key);
 
   final Function(String) onSaved;
   final String? Function(String?)? validator;
   final String hintText;
   final bool obscureText;
+  final bool isSecret;
 
 // TODO: Adicionar funcionalidade de break line quando mensagem for longa (ou quando o usuario clicar enter button)
   @override
