@@ -6,13 +6,15 @@ class CustomTextFormField extends StatefulWidget {
     required this.onSaved,
     required this.validator,
     required this.hintText,
-     this.isSecret =  false,
+    this.isSecret = false,
+    this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   final Function(String) onSaved;
   final String? Function(String?)? validator;
   final String hintText;
   final bool isSecret;
+  final TextInputType keyboardType;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -27,6 +29,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       isObscure = widget.isSecret;
     });
     return TextFormField(
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         prefix: widget.isSecret
             ? IconButton(
