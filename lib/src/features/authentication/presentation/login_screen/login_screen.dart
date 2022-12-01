@@ -73,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       // Email Field
                       CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         onSaved: (_value) {
                           setState(() {
                             _email = _value;
