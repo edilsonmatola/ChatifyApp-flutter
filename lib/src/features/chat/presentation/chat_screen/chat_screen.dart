@@ -180,7 +180,6 @@ class _ChatPageState extends State<ChatPage> {
         onSaved: (_value) => _pageProvider.message = _value,
         validator: (message) => r"^(?!\s*$).+",
         hintText: 'Type a message',
-        obscureText: false,
         isSecret: false,
       ),
     );
