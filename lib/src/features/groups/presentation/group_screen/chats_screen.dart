@@ -91,6 +91,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
         if (_chats != null) {
           if (_chats.isNotEmpty) {
             return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: _chats.length,
               itemBuilder: (BuildContext _context, int _index) {
                 return _chatTile(
