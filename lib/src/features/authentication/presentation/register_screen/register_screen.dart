@@ -155,7 +155,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               hintText: 'Email',
               isSecret: false,
             ),
-            // TODO: Add Hide/Show Password toggle
             // *Password Field
             CustomTextFormField(
               onSaved: (_value) {
