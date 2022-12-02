@@ -44,7 +44,6 @@ class AuthenticationProviderService extends ChangeNotifier {
       },
     );
   }
-// TODO: Bouncing Physics for the Chats and Users page
 
 //TODO: Swipe left or right to navigate through pages
 
