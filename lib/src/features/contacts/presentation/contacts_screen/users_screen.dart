@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 // Providers
 import '../../../authentication/application/authentication_provider_service.dart';
 import '../../../authentication/widgets/widgets_export.dart';
-import '../../contacts_export.dart';
 import '../../application/user_screen_service/users_page_provider.dart';
+import '../../contacts_export.dart';
 import '../../widgets/custom_list_view_tiles.dart';
 // Widgets
 import '../../widgets/custom_top_bar.dart';
@@ -100,6 +100,7 @@ class _UsersScreenState extends State<UsersScreen> {
         if (_users != null) {
           if (_users.isNotEmpty) {
             return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: _users.length,
               itemBuilder: (BuildContext _context, int _index) {
                 return CustomListViewTile(
