@@ -44,12 +44,12 @@ class AuthenticationProviderService extends ChangeNotifier {
       },
     );
   }
+// TODO: Increase the size of the Chat Tile
 
 //TODO: Swipe left or right to navigate through pages
 
 //TODO: Change Icons and Inovate the app
 
-// TODO: Increase the size of the Chat Tile
 
 // TODO: Add the messanger sender name on the group chat  and while it is typing
 
