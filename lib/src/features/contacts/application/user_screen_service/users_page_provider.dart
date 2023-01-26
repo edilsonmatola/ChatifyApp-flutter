@@ -49,9 +49,18 @@ class UsersPageProvider extends ChangeNotifier {
         },
       );
     } catch (error) {
-      // TODO: Return a scaffoldMessanger instead of debugPrint
-      debugPrint('Error getting users');
-      debugPrint('$error');
+      ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            '$error',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+      // debugPrint('Error getting users');
+      // debugPrint('$error');
     }
   }
 
@@ -105,8 +114,18 @@ class UsersPageProvider extends ChangeNotifier {
       notifyListeners();
       _navigation.navigateToPage(_chatPage);
     } catch (error) {
-      debugPrint('Error creating chat');
-      debugPrint('$error');
+      ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            '$error',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+      // debugPrint('Error creating chat');
+      // debugPrint('$error');
     }
   }
 }
