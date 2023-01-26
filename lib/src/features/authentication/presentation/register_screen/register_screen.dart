@@ -173,7 +173,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-// TODO: Futuramente, mudar o nome de Register => Sign up e colocar texto Sign up em bold
   Widget _registerButton() {
     return CustomRoundedButtonWidget(
       name: 'Register',
