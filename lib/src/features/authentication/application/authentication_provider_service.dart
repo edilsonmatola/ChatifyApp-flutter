@@ -50,7 +50,6 @@ class AuthenticationProviderService extends ChangeNotifier {
 
 //TODO: Change Icons and Inovate the app
 
-
 // TODO: Add the messanger sender name on the group chat  and while it is typing
 
 // TODO: Use scaffoldMessanger to show the error logs, instead of debugPrint
@@ -70,11 +69,28 @@ class AuthenticationProviderService extends ChangeNotifier {
 
       debugPrint('${_auth.currentUser}');
     } on FirebaseAuthException {
-      debugPrint('Error login user into Firebase.');
+      const ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            'Error loging user into Firebase. Please try again later',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+      // debugPrint('Error login user into Firebase.');
     } catch (e) {
-      // TODO: Error snackbar
-
-      debugPrint('$e');
+      ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            '$e',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
     }
   }
 
@@ -88,11 +104,30 @@ class AuthenticationProviderService extends ChangeNotifier {
           email: _email, password: _password);
       return _credentials.user!.uid;
     } on FirebaseAuthException {
-      debugPrint('Error registering user.');
+      const ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            'Error registering user. Please try again later',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+      // debugPrint('Error registering user.');
     } catch (error) {
-      // TODO: Error snackbar
+      ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            '$error',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
 
-      debugPrint('$error');
+      // debugPrint('$error');
     }
     return null;
   }
@@ -102,8 +137,17 @@ class AuthenticationProviderService extends ChangeNotifier {
     try {
       await _auth.signOut();
     } catch (error) {
-      // TODO: Error snackbar
-      debugPrint('$error');
+      ScaffoldMessenger(
+        child: SnackBar(
+          content: Text(
+            '$error',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+      // debugPrint('$error');
     }
   }
 }
