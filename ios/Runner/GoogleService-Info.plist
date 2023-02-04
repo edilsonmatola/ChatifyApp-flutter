@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>477188160230-3pbnasa912e403ntirb2esncjud2samh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.477188160230-3pbnasa912e403ntirb2esncjud2samh</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>477188160230-1rutsiqe5pcpon1ijtra8v4ui23adicu.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDUsvk_vzC4ZEf7aN0GniYkMBW9nSm3GHk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>477188160230</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>mz.com.edilson.chatifyapp</string>
+	<key>PROJECT_ID</key>
+	<string>chatifyapp-3b99a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chatifyapp-3b99a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:477188160230:ios:f5eff3e0ade78ee7ff5927</string>
+</dict>
+</plist>
