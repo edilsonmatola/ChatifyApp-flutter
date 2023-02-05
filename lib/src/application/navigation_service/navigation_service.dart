@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  void removeAndNavigateToRoute(String _route) {
+  void removeAndNavigateToRoute(String route) {
     // exit the current page and navigate to another one base on the given route
-    navigatorKey.currentState?.popAndPushNamed(_route);
+    navigatorKey.currentState?.popAndPushNamed(route);
   }
 
-  void nagivateRoute(String _route) {
+  void nagivateRoute(String route) {
     // Navigate to other pages
-    navigatorKey.currentState?.pushNamed(_route);
+    navigatorKey.currentState?.pushNamed(route);
   }
 
-  void navigateToPage(Widget _page) {
+  void navigateToPage(Widget page) {
     navigatorKey.currentState?.push(
       MaterialPageRoute(
-        builder: (_context) => _page,
+        builder: (context) => page,
       ),
     );
   }

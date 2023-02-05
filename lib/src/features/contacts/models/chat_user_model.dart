@@ -13,13 +13,13 @@ class ChatUserModel {
   final String imageUrl;
   late DateTime lastActive;
 
-  factory ChatUserModel.fromJson(Map<String, dynamic> _json) {
+  factory ChatUserModel.fromJson(Map<String, dynamic> json) {
     return ChatUserModel(
-      uid: _json['uid'],
-      name: _json['name'],
-      email: _json['email'],
-      imageUrl: _json['image'],
-      lastActive: _json['last_active'].toDate(),
+      uid: json['uid'],
+      name: json['name'],
+      email: json['email'],
+      imageUrl: json['image'],
+      lastActive: json['last_active'].toDate(),
     );
   }
 

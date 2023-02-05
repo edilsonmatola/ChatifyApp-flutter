@@ -37,12 +37,12 @@ class UsersPageProvider extends ChangeNotifier {
     _selectedUsers = [];
     try {
       _database.getUsers(name: name).then(
-        (_snapshot) {
-          users = _snapshot.docs.map(
-            (_eachDoc) {
-              final _data = _eachDoc.data() as Map<String, dynamic>;
-              _data['uid'] = _eachDoc.id;
-              return ChatUserModel.fromJson(_data);
+        (snapshot) {
+          users = snapshot.docs.map(
+            (eachDoc) {
+              final data = eachDoc.data() as Map<String, dynamic>;
+              data['uid'] = eachDoc.id;
+              return ChatUserModel.fromJson(data);
             },
           ).toList();
           notifyListeners();
@@ -65,11 +65,11 @@ class UsersPageProvider extends ChangeNotifier {
   }
 
   // * Select multiple Users
-  void updateSelectedUsers(ChatUserModel _user) {
-    if (_selectedUsers.contains(_user)) {
-      _selectedUsers.remove(_user);
+  void updateSelectedUsers(ChatUserModel user) {
+    if (_selectedUsers.contains(user)) {
+      _selectedUsers.remove(user);
     } else {
-      _selectedUsers.add(_user);
+      _selectedUsers.add(user);
     }
     notifyListeners();
   }
@@ -77,42 +77,42 @@ class UsersPageProvider extends ChangeNotifier {
   // * Create Group Or Individual chat in the Firestore database
   Future<void> createChat() async {
     try {
-      final _membersIds =
-          _selectedUsers.map((_eachUser) => _eachUser.uid).toList();
-      _membersIds.add(_auth.user.uid);
-      final _isGroup = _selectedUsers.length > 1;
-      final _doc = await _database.createChat(
+      final membersIds =
+          _selectedUsers.map((eachUser) => eachUser.uid).toList();
+      membersIds.add(_auth.user.uid);
+      final isGroup = _selectedUsers.length > 1;
+      final doc = await _database.createChat(
         {
-          'is_group': _isGroup,
+          'is_group': isGroup,
           'is_activity': false,
-          'members': _membersIds,
+          'members': membersIds,
         },
       );
       // * Navigate to chat page
-      final _membersOfChat = <ChatUserModel>[];
-      for (var _uid in _membersIds) {
-        final _userSnapshot = await _database.getUser(_uid);
-        final _userData = _userSnapshot.data() as Map<String, dynamic>;
-        _userData['uid'] = _userSnapshot.id;
-        _membersOfChat.add(
+      final membersOfChat = <ChatUserModel>[];
+      for (var uid in membersIds) {
+        final userSnapshot = await _database.getUser(uid);
+        final userData = userSnapshot.data() as Map<String, dynamic>;
+        userData['uid'] = userSnapshot.id;
+        membersOfChat.add(
           ChatUserModel.fromJson(
-            _userData,
+            userData,
           ),
         );
       }
-      final _chatPage = ChatPage(
+      final chatPage = ChatPage(
         chat: ChatsModel(
-          uid: _doc!.id,
+          uid: doc!.id,
           currentUserUid: _auth.user.uid,
           activity: false,
-          group: _isGroup,
-          members: _membersOfChat,
+          group: isGroup,
+          members: membersOfChat,
           messages: [],
         ),
       );
       _selectedUsers = [];
       notifyListeners();
-      _navigation.navigateToPage(_chatPage);
+      _navigation.navigateToPage(chatPage);
     } catch (error) {
       ScaffoldMessenger(
         child: SnackBar(
