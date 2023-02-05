@@ -16,7 +16,7 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 
 ## Demo
 
-<img src="./.github/images/preview/preview_1.png" width="35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./.github/images/preview/preview_2.png" width="35%">
+![Chatify-app-preview](/.github/images/preview/Chatify-app-preview.png)
 
 ## Installation
 
