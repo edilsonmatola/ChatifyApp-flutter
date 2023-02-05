@@ -74,9 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Email Field
                       CustomTextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        onSaved: (_value) {
+                        onSaved: (value) {
                           setState(() {
-                            _email = _value;
+                            _email = value;
                           });
                         },
                         validator: (email) =>
@@ -86,17 +86,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       // Password Field
                       CustomTextFormField(
-                        onSaved: (_value) {
+                        isSecret: true,
+                        hintText: 'Password',
+                        onSaved: (value) {
                           setState(() {
-                            _password = _value;
+                            _password = value;
                           });
                         },
                         // Password longer than 8 chars
                         validator: (password) =>
                             RegExpUtils().passwordValidator(password!),
-                        hintText: 'Password',
-                        isSecret: true,
-                      )
+                      ),
                     ],
                   ),
                 ),
