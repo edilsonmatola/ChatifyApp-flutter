@@ -37,7 +37,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthenticationProviderService>(
-          create: (BuildContext _context) => AuthenticationProviderService(),
+          create: (BuildContext context) => AuthenticationProviderService(),
         ),
       ],
       child: MaterialApp(
@@ -64,9 +64,9 @@ class MainApp extends StatelessWidget {
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
         routes: {
-          '/login': (BuildContext _context) => const LoginScreen(),
-          '/register': (BuildContext _context) => const RegisterScreen(),
-          '/home': (BuildContext _context) => const HomeScreen(),
+          '/login': (BuildContext context) => const LoginScreen(),
+          '/register': (BuildContext context) => const RegisterScreen(),
+          '/home': (BuildContext context) => const HomeScreen(),
         },
       ),
     );
