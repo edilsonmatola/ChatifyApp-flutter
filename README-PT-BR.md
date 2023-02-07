@@ -14,6 +14,10 @@ Este é um aplicativo de mensagens moderno onde os usuários podem se inscrever 
 
 Ele usa o Firebase Cloud Firestore, bem como o pacote Firebase Authentication e Firebase Storage, que equipa este aplicativo com um banco de dados NoSQL baseado em nuvem e métodos de autenticação seguros.
 
+## Demonstração
+
+![Chatify-app-preview](/.github/images/preview/Chatify-app-preview.png)
+
 ### Dependências
 
 1. [Firebase_Core](https://pub.dev/packages/firebase_core)
