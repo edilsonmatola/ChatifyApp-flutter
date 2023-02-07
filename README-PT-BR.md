@@ -8,7 +8,7 @@
 
 </details>
 
-# Chattify App
+# Chatify App
 
 Este é um aplicativo de mensagens moderno onde os usuários podem se inscrever e fazer login para conversar com seus amigos, familiares, colegas entre grupos com experiência de usuário enriquecida.
 
@@ -52,8 +52,8 @@ git clone https://github.com/edilsonmatola/ChatifyApp-flutter.git
 cd ChatifyApp-flutter
 ```
 
-3. Crie projeto do Firebase
-4. Ative a autenticação
+3. Crie projecto do Firebase
+4. Active a autenticação
 5. Crie regras do Firestore
 6. Crie aplicativos para Android, iOS e Web
 
