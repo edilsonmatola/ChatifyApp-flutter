@@ -8,7 +8,7 @@
 
 </details>
 
-# Chattify App
+# Chatify App
 
 This is a flutter based modern messaging app where users can sign up and log in to chat with their friends, family, colleagues among groups with enriched User-Experience.
 
@@ -17,30 +17,6 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 ## Demo
 
 ![Chatify-app-preview](/.github/images/preview/Chatify-app-preview.png)
-
-## Installation
-
-##### 1. Clone the repository
-
-```bash
-git clone https://github.com/edilsonmatola/food_delivery_ui_flutter.git
-```
-
-##### 2. Move to the desired folder
-
-```bash
-cd food_delivery_ui_flutter
-```
-
-##### 3. To run the app, simply write the following commands:
-
-```bash
-flutter pub get
-# flutter emulators --launch "emulator_id" (to get Android Simulator)
-open -a simulator (to get iOS Simulator)
-flutter run
-flutter run -d chrome --web-renderer html (to see the best output)
-```
 
 ### Dependencies
 
