@@ -21,8 +21,8 @@ If you'd like to add a feature or fix a bug, we're more than happy to accept pul
 
 - Take a look at the existing [Issues](https://github.com/edilsonmatola/ChatifyApp-flutter/issues) or [create a new issue](https://github.com/edilsonmatola/ChatifyApp-flutter/issues/new/choose)!
 - [Fork the Repo](https://github.com/edilsonmatola/ChatifyApp-flutter/fork). Then, create a branch for any issue that you are working on. Finally, commit your work.
-- Create a **[Pull Request](https://github.com/edilsonmatola/ChatifyApp-flutter/compare)** (_PR_), which will be promptly reviewed and given suggestions for improvements by the community.
-- Add screenshots or screen captures to your Pull Request to help us understand the effects of the changes proposed in your PR.
+- Create a **[Pull Request](https://github.com/edilsonmatola/ChatifyApp-flutter/compare)** (_PR_), which will be promptly reviewed and given suggestions for improvements by me.
+- Add screenshots or screen captures to your Pull Request to help me understand the effects of the changes proposed in your PR.
 
 ## ⭐ HOW TO MAKE A PULL REQUEST:
 
