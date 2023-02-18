@@ -31,7 +31,7 @@ If you'd like to add a feature or fix a bug, we're more than happy to accept pul
 **2.** Clone your new fork of the repository:
 
 ```bash
-git clone https://github.com/<your-github-username>/ChatifyApp-flutter
+git clone https://github.com/edilsonmatola/ChatifyApp-flutter
 ```
 
 **3.** Navigate to the new project directory:
