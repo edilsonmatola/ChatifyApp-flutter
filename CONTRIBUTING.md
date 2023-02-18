@@ -31,7 +31,7 @@ If you'd like to add a feature or fix a bug, we're more than happy to accept pul
 **2.** Clone your new fork of the repository:
 
 ```bash
-git clone https://github.com/edilsonmatola/ChatifyApp-flutter
+git clone https://github.com/YOUR_GITHUB_USERNAME/ChatifyApp-flutter
 ```
 
 **3.** Navigate to the new project directory:
@@ -43,7 +43,7 @@ cd ChatifyApp-flutter
 **4.** Set upstream command:
 
 ```bash
-git remote add upstream https://github.com/edilsonmatola/ChatifyApp-flutter.git
+git remote add upstream https://github.com/YOUR_GITHUB_USERNAME/ChatifyApp-flutter.git
 ```
 
 **5.** Checkout from main to **develop** branch.
