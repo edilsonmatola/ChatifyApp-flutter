@@ -9,11 +9,10 @@ import 'package:get_it/get_it.dart';
 // Providers
 import '../../../../application/firestore_database_service/database_service.dart';
 import '../../../authentication/application/authentication_provider_service.dart';
-
 // Models
 import '../../../contacts/contacts_export.dart';
-import '../../models/chat_message_model.dart';
 import '../../../groups/models/chats_model.dart';
+import '../../models/chat_message_model.dart';
 
 class ChatsPageProvider extends ChangeNotifier {
   ChatsPageProvider(this._auth) {
@@ -39,51 +38,51 @@ class ChatsPageProvider extends ChangeNotifier {
   void getChats() async {
     try {
       _chatsStream = _database.getChatsForsUser(_auth.user.uid).listen(
-        (_snapshot) async {
+        (snapshot) async {
           chats = await Future.wait(
-            _snapshot.docs.map(
-              (_eachDoc) async {
-                final _chatData = _eachDoc.data() as Map<String, dynamic>;
+            snapshot.docs.map(
+              (eachDoc) async {
+                final chatData = eachDoc.data() as Map<String, dynamic>;
                 // * Get users instance
-                List<ChatUserModel> _members = [];
+                List<ChatUserModel> members = [];
                 // * Looping through the members arry from Firebase
-                for (var _uid in _chatData['members']) {
+                for (var uid in chatData['members']) {
                   // * Getting the uid from each user
-                  final _userSnapshot = await _database.getUser(_uid);
-                  if (_eachDoc.data() != null) {
+                  final userSnapshot = await _database.getUser(uid);
+                  if (eachDoc.data() != null) {
                     //* Extracting the data from each user
-                    final _userData =
-                        _userSnapshot.data() as Map<String, dynamic>;
+                    final userData =
+                        userSnapshot.data() as Map<String, dynamic>;
                     // * Acessing the user id
-                    _userData['uid'] = _userSnapshot.id;
+                    userData['uid'] = userSnapshot.id;
                     //* Adding to members list the user instance
-                    _members.add(
+                    members.add(
                       ChatUserModel.fromJson(
-                        _userData,
+                        userData,
                       ),
                     );
                   }
                 }
                 // * Get Last Message For Chat
-                List<ChatMessage> _messages = [];
+                List<ChatMessage> messages = [];
                 // * Stoting the snapshot
-                final _chatMessage =
-                    await _database.getLastMessageFroChat(_eachDoc.id);
-                if (_chatMessage.docs.isNotEmpty) {
-                  final _messageData =
-                      _chatMessage.docs.first.data()! as Map<String, dynamic>;
-                  final _message = ChatMessage.fromJSON(_messageData);
+                final chatMessage =
+                    await _database.getLastMessageFroChat(eachDoc.id);
+                if (chatMessage.docs.isNotEmpty) {
+                  final messageData =
+                      chatMessage.docs.first.data()! as Map<String, dynamic>;
+                  final message = ChatMessage.fromJSON(messageData);
                   // * Adding each message in the messages array
-                  _messages.add(_message);
+                  messages.add(message);
                 }
                 // *Return chat instance
                 return ChatsModel(
-                  uid: _eachDoc.id,
+                  uid: eachDoc.id,
                   currentUserUid: _auth.user.uid,
-                  activity: _chatData['is_activity'],
-                  group: _chatData['is_group'],
-                  members: _members,
-                  messages: _messages,
+                  activity: chatData['is_activity'],
+                  group: chatData['is_group'],
+                  members: members,
+                  messages: messages,
                 );
               },
             ).toList(),

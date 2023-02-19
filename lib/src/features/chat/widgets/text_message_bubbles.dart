@@ -23,7 +23,7 @@ class TextMessageBubbleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> _colorScheme = isOwnMessage
+    List<Color> colorScheme = isOwnMessage
         ? [
             AppColors.appOwnMessageBubbleColor,
             AppColors.appPrimaryBackgroundColor,
@@ -39,7 +39,7 @@ class TextMessageBubbleWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
-          colors: _colorScheme,
+          colors: colorScheme,
           stops: const [0.30, 0.70],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,

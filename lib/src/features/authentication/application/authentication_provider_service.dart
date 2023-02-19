@@ -16,19 +16,19 @@ class AuthenticationProviderService extends ChangeNotifier {
         if (_user != null) {
           _databaseService.updateUserLastSeenTime(_user.uid);
           _databaseService.getUser(_user.uid).then(
-            (_snapshot) {
+            (snapshot) {
               // * Check if the documentSnapshot exists or not.
-              if (_snapshot.exists) {
-                final _userData = _snapshot.data() as Map<String, dynamic>;
+              if (snapshot.exists) {
+                final userData = snapshot.data() as Map<String, dynamic>;
                 //* Check if the document object is null or not
-                if (_snapshot.data() != null) {
+                if (snapshot.data() != null) {
                   user = ChatUserModel.fromJson(
                     {
                       'uid': _user.uid,
-                      'name': _userData['name'],
-                      'email': _userData['email'],
-                      'image': _userData['image'],
-                      'last_active': _userData['last_active'],
+                      'name': userData['name'],
+                      'email': userData['email'],
+                      'image': userData['image'],
+                      'last_active': userData['last_active'],
                     },
                   );
                 }
@@ -51,11 +51,9 @@ class AuthenticationProviderService extends ChangeNotifier {
 
   late ChatUserModel user;
 
-  Future<void> loginUsingEmailAndPassword(
-      String _email, String _password) async {
+  Future<void> loginUsingEmailAndPassword(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(
-          email: _email, password: _password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException {
       const ScaffoldMessenger(
         child: SnackBar(
@@ -84,13 +82,13 @@ class AuthenticationProviderService extends ChangeNotifier {
 
   //* Register user in the firebase
   Future<String?> registerUserUsingEmailAndPassword(
-    String _email,
-    String _password,
+    String email,
+    String password,
   ) async {
     try {
-      UserCredential _credentials = await _auth.createUserWithEmailAndPassword(
-          email: _email, password: _password);
-      return _credentials.user!.uid;
+      UserCredential credentials = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return credentials.user!.uid;
     } on FirebaseAuthException {
       const ScaffoldMessenger(
         child: SnackBar(

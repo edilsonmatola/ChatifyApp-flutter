@@ -41,10 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-        onTap: (_index) {
+        onTap: (index) {
           setState(
             () {
-              _currentPage = _index;
+              _currentPage = index;
             },
           );
         },

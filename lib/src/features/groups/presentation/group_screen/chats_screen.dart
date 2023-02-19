@@ -46,9 +46,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
         )
       ],
       child: Builder(
-        builder: (_context) {
+        builder: (context) {
           //* Triggers the info in the widgets to render themselves
-          _pageProvider = _context.watch<ChatsPageProvider>();
+          _pageProvider = context.watch<ChatsPageProvider>();
           return Container(
             width: _deviceWidth * .97,
             height: _deviceHeight * .98,
@@ -85,17 +85,17 @@ class _ChatsScreenState extends State<ChatsScreen> {
 
   // Build UI
   Widget _chatsList() {
-    List<ChatsModel>? _chats = _pageProvider.chats;
+    List<ChatsModel>? chats = _pageProvider.chats;
     return Expanded(
       child: (() {
-        if (_chats != null) {
-          if (_chats.isNotEmpty) {
+        if (chats != null) {
+          if (chats.isNotEmpty) {
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount: _chats.length,
-              itemBuilder: (BuildContext _context, int _index) {
+              itemCount: chats.length,
+              itemBuilder: (BuildContext context, int index) {
                 return _chatTile(
-                  _chats[_index],
+                  chats[index],
                 );
               },
             );
@@ -121,29 +121,29 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
 //* Render the chat tile
-  Widget _chatTile(ChatsModel _chat) {
+  Widget _chatTile(ChatsModel chat) {
     // * Getting the users
-    List<ChatUserModel> _recepients = _chat.recepients();
+    List<ChatUserModel> recepients = chat.recepients();
     // * Checking if each user is active or not
-    bool _isActive = _recepients.any(
-      (_eachDoc) => _eachDoc.wasRecentlyActive(),
+    bool isActive = recepients.any(
+      (eachDoc) => eachDoc.wasRecentlyActive(),
     );
-    var _subtitleText = '';
-    if (_chat.messages.isNotEmpty) {
+    var subtitleText = '';
+    if (chat.messages.isNotEmpty) {
       //The chat may not have any messages when created
-      _subtitleText = _chat.messages.first.type != MessageType.text
+      subtitleText = chat.messages.first.type != MessageType.text
           ? 'Media Attachment'
-          : _chat.messages.first.content;
+          : chat.messages.first.content;
     }
     return CustomListViewTileWithActivity(
       height: _deviceHeight * .10,
-      title: _chat.title(),
-      subtitle: _subtitleText,
-      imagePath: _chat.chatImageURL(),
-      isActive: _isActive,
-      isActivity: _chat.activity,
+      title: chat.title(),
+      subtitle: subtitleText,
+      imagePath: chat.chatImageURL(),
+      isActive: isActive,
+      isActivity: chat.activity,
       onTap: () => _navigation.navigateToPage(
-        ChatPage(chat: _chat),
+        ChatPage(chat: chat),
       ),
     );
   }

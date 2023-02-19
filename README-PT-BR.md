@@ -8,11 +8,22 @@
 
 </details>
 
-# Chattify App
+# Chatify App - Aplicação de troca de mensagens em tempo real
 
-Este é um aplicativo de mensagens moderno onde os usuários podem se inscrever e fazer login para conversar com seus amigos, familiares, colegas entre grupos com experiência de usuário enriquecida.
+Esta é uma aplicação de bate-papo/ conversa em tempo real construída com Flutter e Firebase. O aplicativo permite que os usuários criem contas, encontrem e adicionem amigos, e enviem e recebam mensagens em tempo real com uma experiência de usuário enriquecida.
 
 Ele usa o Firebase Cloud Firestore, bem como o pacote Firebase Authentication e Firebase Storage, que equipa este aplicativo com um banco de dados NoSQL baseado em nuvem e métodos de autenticação seguros.
+
+## **Funcionalidades:**
+
+**Autenticação**: os usuários podem criar contas, fazer login e logout usando seu e-mail e senha.
+**Mensagens em Tempo Real**: os usuários podem enviar e receber mensagens em tempo real.
+**Pesquisar e Adicionar Amigos**: os usuários podem procurar outros usuários pelo endereço de e-mail e adicioná-los como amigos.
+**Perfil do Usuário**: os usuários podem visualizar seu próprio perfil, editar sua foto de perfil e visualizar sua lista de amigos.
+
+## Demonstração
+
+![Chatify-app-preview](/.github/images/preview/Chatify-app-preview.png)
 
 ### Dependências
 
@@ -52,8 +63,8 @@ git clone https://github.com/edilsonmatola/ChatifyApp-flutter.git
 cd ChatifyApp-flutter
 ```
 
-3. Crie projeto do Firebase
-4. Ative a autenticação
+3. Crie projecto do Firebase
+4. Active a autenticação
 5. Crie regras do Firestore
 6. Crie aplicativos para Android, iOS e Web
 
@@ -66,3 +77,13 @@ open -a simulator (para obter o iOS Simulator)
 flutter run
 flutter run -d chrome --web-renderer html (para ver a melhor saída)
 ```
+
+## **Contribuindo**
+
+Contribuições para o aplicativo são bem-vindas! Se você deseja contribuir, por favor, reserve um momento para revisar o arquivo [CONTRIBUIÇÃO](./CONTRIBUTING.md). Este arquivo descreve as diretrizes e processos para contribuir para o Habitual.
+
+Se tiver alguma dúvida ou preocupação sobre o processo de contribuição, não hesite em entrar em contacto comigo [aqui](https://github.com/edilsonmatola/ChatifyApp-flutter/issues). Eu sempre estou feliz em ajudar novos colaboradores a se actualizarem.
+
+# **Licença**
+
+Este projeto está licenciado sob a **Licença MIT**. Sinta-se à vontade para usá-lo como ponto de partida para seus próprios projectos!

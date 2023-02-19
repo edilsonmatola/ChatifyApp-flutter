@@ -21,26 +21,32 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  bool isObscure = false;
+
+  @override
+  void initState() {
+    isObscure = widget.isSecret;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isObscure = false;
-    setState(() {
-      isObscure = widget.isSecret;
-    });
     return TextFormField(
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        prefix: widget.isSecret
-            ? IconButton(
-                onPressed: () {
+        suffix: widget.isSecret
+            ? GestureDetector(
+                onTap: () {
                   setState(() {
                     isObscure = !isObscure;
                   });
                 },
-                icon: Icon(
+                child: Icon(
                   isObscure
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined,
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
+                  color: Colors.white,
+                  size: 20,
                 ),
               )
             : null,
@@ -60,8 +66,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       ),
       cursorColor: Colors.white,
       obscureText: isObscure,
-      onSaved: (_value) => widget.onSaved(_value!),
-      validator: (_value) => widget.validator!(_value),
+      onSaved: (value) => widget.onSaved(value!),
+      validator: (value) => widget.validator!(value),
     );
   }
 }

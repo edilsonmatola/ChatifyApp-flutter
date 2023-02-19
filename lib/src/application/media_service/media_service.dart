@@ -5,11 +5,11 @@ class MediaService {
 
   // Null checker in case we may not get any image to return
   Future<PlatformFile?> pickImageFromLibrary() async {
-    FilePickerResult? _result =
+    FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.image);
-    if (_result != null) {
+    if (result != null) {
       // Return the first image of the array
-      return _result.files[0];
+      return result.files[0];
     }
     // Otherwise, return null
     return null;

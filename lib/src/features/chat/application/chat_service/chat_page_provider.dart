@@ -46,7 +46,7 @@ class ChatPageProvider extends ChangeNotifier {
 
   String get message => _message as String;
 
-  set message(String _value) => _message = _value;
+  set message(String value) => _message = value;
 
   @override
   void dispose() {
@@ -57,14 +57,14 @@ class ChatPageProvider extends ChangeNotifier {
   void listenToMessages() {
     try {
       _messagesStream = _database.streamMessagesForChatPage(_chatId).listen(
-        (_snapshot) {
-          List<ChatMessage> _messages = _snapshot.docs.map(
-            (_message) {
-              final messageData = _message.data() as Map<String, dynamic>;
+        (snapshot) {
+          List<ChatMessage> messages = snapshot.docs.map(
+            (message) {
+              final messageData = message.data() as Map<String, dynamic>;
               return ChatMessage.fromJSON(messageData);
             },
           ).toList();
-          messages = _messages;
+          messages = messages;
           notifyListeners();
           // * Go to the last sent message
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -84,10 +84,10 @@ class ChatPageProvider extends ChangeNotifier {
 // * User Typing activity listening to the keyboard
   void listenToKeyboardChanges() {
     _keyboardVisibilityStream = _keyboardVisibilityController.onChange.listen(
-      (_event) {
+      (event) {
         _database.updateChatData(
           _chatId,
-          {'is_activity': _event},
+          {'is_activity': event},
         );
       },
     );
@@ -98,33 +98,33 @@ class ChatPageProvider extends ChangeNotifier {
   // * TEXT messages
   void sendTextMessage() {
     if (_message != null) {
-      final _messageToSend = ChatMessage(
+      final messageToSend = ChatMessage(
         senderID: _auth.user.uid,
         type: MessageType.text,
         content: _message!,
         sentTime: DateTime.now(),
       );
-      _database.addMessagesToChat(_chatId, _messageToSend);
+      _database.addMessagesToChat(_chatId, messageToSend);
     }
   }
 
   // * IMAGE messages
   void sendImageMessage() async {
     try {
-      final _file = await _media.pickImageFromLibrary();
-      if (_file != null) {
+      final file = await _media.pickImageFromLibrary();
+      if (file != null) {
         final downloadUrl = await _storage.saveChatImageToStorage(
           _chatId,
           _auth.user.uid,
-          _file,
+          file,
         );
-        final _messageToSend = ChatMessage(
+        final messageToSend = ChatMessage(
           senderID: _auth.user.uid,
           type: MessageType.image,
           content: downloadUrl!,
           sentTime: DateTime.now(),
         );
-        _database.addMessagesToChat(_chatId, _messageToSend);
+        _database.addMessagesToChat(_chatId, messageToSend);
       }
     } catch (error) {
       debugPrint('$error');

@@ -50,8 +50,8 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ],
       child: Builder(
-        builder: (_context) {
-          _pageProvider = _context.watch<ChatPageProvider>();
+        builder: (context) {
+          _pageProvider = context.watch<ChatPageProvider>();
           return Scaffold(
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -110,16 +110,16 @@ class _ChatPageState extends State<ChatPage> {
           child: ListView.builder(
             controller: _messagesListViewController,
             itemCount: _pageProvider.messages!.length,
-            itemBuilder: (BuildContext _context, int _index) {
-              final _message = _pageProvider.messages![_index];
-              final _isOwnMessage = _message.senderID == _auth.user.uid;
+            itemBuilder: (BuildContext context, int index) {
+              final message = _pageProvider.messages![index];
+              final isOwnMessage = message.senderID == _auth.user.uid;
               return CustomChatListViewTile(
                 width: _deviceWidth * .80,
                 deviceHeight: _deviceHeight,
-                isOwnMessage: _isOwnMessage,
-                message: _message,
+                isOwnMessage: isOwnMessage,
+                message: message,
                 sender: widget.chat.members
-                    .where((element) => element.uid == _message.senderID)
+                    .where((element) => element.uid == message.senderID)
                     .first,
               );
             },
@@ -177,7 +177,7 @@ class _ChatPageState extends State<ChatPage> {
     return SizedBox(
       width: _deviceWidth * .65,
       child: CustomTextFormField(
-        onSaved: (_value) => _pageProvider.message = _value,
+        onSaved: (value) => _pageProvider.message = value,
         validator: (message) => r"^(?!\s*$).+",
         hintText: 'Type a message',
         isSecret: false,
@@ -187,10 +187,10 @@ class _ChatPageState extends State<ChatPage> {
 
   // * Send Message Button
   Widget _sendMessageButton() {
-    double _size = _deviceHeight * .04;
+    double size = _deviceHeight * .04;
     return SizedBox(
-      width: _size,
-      height: _size,
+      width: size,
+      height: size,
       child: IconButton(
         onPressed: () {
           if (_messageFormState.currentState!.validate()) {
@@ -210,10 +210,10 @@ class _ChatPageState extends State<ChatPage> {
 
   // * Send Image Button
   Widget _sendImageButton() {
-    double _size = _deviceHeight * .04;
+    double size = _deviceHeight * .04;
     return SizedBox(
-      width: _size,
-      height: _size,
+      width: size,
+      height: size,
       child: FloatingActionButton(
         backgroundColor: AppColors.appPrimaryIconColor,
         onPressed: () {

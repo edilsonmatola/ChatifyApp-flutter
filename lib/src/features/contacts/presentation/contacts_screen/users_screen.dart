@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 // Providers
 import '../../../authentication/application/authentication_provider_service.dart';
 import '../../../authentication/widgets/widgets_export.dart';
-import '../../contacts_export.dart';
 import '../../application/user_screen_service/users_page_provider.dart';
+import '../../contacts_export.dart';
 import '../../widgets/custom_list_view_tiles.dart';
 // Widgets
 import '../../widgets/custom_top_bar.dart';
@@ -46,8 +46,8 @@ class _UsersScreenState extends State<UsersScreen> {
   }
 
   Widget _buildUI() {
-    return Builder(builder: (_context) {
-      _userPageProvider = _context.watch<UsersPageProvider>();
+    return Builder(builder: (context) {
+      _userPageProvider = context.watch<UsersPageProvider>();
       return Container(
         width: _deviceWidth * .97,
         height: _deviceHeight * .98,
@@ -74,9 +74,9 @@ class _UsersScreenState extends State<UsersScreen> {
               ),
             ),
             CustomTextField(
-              onEditingComplete: (_value) {
+              onEditingComplete: (value) {
                 // TODO: Criar funcionalidade para fazer um search enquanto o user vai digitando e o valor aparece
-                _userPageProvider.getUsers(name: _value);
+                _userPageProvider.getUsers(name: value);
                 FocusScope.of(context).unfocus();
               },
               hintText: 'Search...',
@@ -94,25 +94,26 @@ class _UsersScreenState extends State<UsersScreen> {
 
 // * Render the chats of the users
   Widget _usersList() {
-    List? _users = _userPageProvider.users;
+    List? users = _userPageProvider.users;
     return Expanded(
       child: () {
-        if (_users != null) {
-          if (_users.isNotEmpty) {
+        if (users != null) {
+          if (users.isNotEmpty) {
             return ListView.builder(
-              itemCount: _users.length,
-              itemBuilder: (BuildContext _context, int _index) {
+              physics: const BouncingScrollPhysics(),
+              itemCount: users.length,
+              itemBuilder: (BuildContext context, int index) {
                 return CustomListViewTile(
                   height: _deviceHeight * .10,
-                  title: _users[_index].name,
-                  subtitle: 'Last Active: ${_users[_index].lastActive}',
-                  imagePath: _users[_index].imageUrl,
-                  isActive: _users[_index].wasRecentlyActive(),
+                  title: users[index].name,
+                  subtitle: 'Last Active: ${users[index].lastActive}',
+                  imagePath: users[index].imageUrl,
+                  isActive: users[index].wasRecentlyActive(),
                   isSelected: _userPageProvider.selectedUsers.contains(
-                    _users[_index],
+                    users[index],
                   ),
                   onTap: () => _userPageProvider.updateSelectedUsers(
-                    _users[_index],
+                    users[index],
                   ),
                 );
               },

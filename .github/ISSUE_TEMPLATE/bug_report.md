@@ -39,10 +39,6 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
-- [ ] I have read the contribution guidelines at [CONTRIBUTING.md](CONTRIBUTING.md)
-- [ ] I have checked other issues/PRs to make sure this is not a duplicate
-- [ ] I agree that my contribution is subject to this project's [MIT License](LICENSE.md)
-
 ## Contribution checklist
 
 - [ ] I have read the contribution guidelines at [CONTRIBUTING.md](CONTRIBUTING.md)
