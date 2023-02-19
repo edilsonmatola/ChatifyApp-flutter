@@ -8,11 +8,18 @@
 
 </details>
 
-# Chatify App
+# **Chatify App - Realtime Chat App with Flutter and Firebase**
 
-This is a flutter based modern messaging app where users can sign up and log in to chat with their friends, family, colleagues among groups with enriched User-Experience.
+This is a realtime chat application built with Flutter and Firebase. The app allows users to create accounts, find and add friends, and send and receive messages in real time with enriched User-Experience.
 
 It uses Firebase Cloud Firestore as well as the Firebase Authentication and Firebase Storage package which equips this app with a cloud-based NoSQL database and secure authentication methods.
+
+# **Features**
+
+**Authentication**: Users can create accounts, sign in, and sign out using their email and password.
+**Realtime Messaging**: Users can send and receive messages in real time.
+**Search and Add Friends**: Users can search for other users by email address and add them as friends.
+**User Profile**: Users can view their own profile, edit their profile picture, and view their friend list.
 
 ## Demo
 
@@ -46,7 +53,7 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 
 ##### 1. Clone the repository
 
-```bash
+```bashhabitual-ecommerce-getx
 git clone https://github.com/edilsonmatola/ChatifyApp-flutter.git
 ```
 
@@ -70,3 +77,13 @@ open -a simulator (to get iOS Simulator)
 flutter run
 flutter run -d chrome --web-renderer html (to see the best output)
 ```
+
+## **Contributing**
+
+Contributions to the app are welcome! If you'd like to contribute, please take a moment to review the **[CONTRIBUTING](./CONTRIBUTING.md)** file. This file outlines the guidelines and processes for contributing to Habitual.
+
+If you have any questions or concerns about the contributing process, please don't hesitate to reach me out [here](https://github.com/edilsonmatola/ChatifyApp-flutter/issues). I'm always happy to help new contributors get up to speed.
+
+# **License**
+
+This project is licensed under the **MIT License**. Feel free to use it as a starting point for your own projects!
