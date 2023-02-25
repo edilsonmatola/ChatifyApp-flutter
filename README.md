@@ -21,11 +21,11 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 **Search and Add Friends**: Users can search for other users by email address and add them as friends.
 **User Profile**: Users can view their own profile, edit their profile picture, and view their friend list.
 
-## Demo
+## **Demo**
 
 ![Chatify-app-preview](/.github/images/preview/Chatify-app-preview.png)
 
-### Dependencies
+### **Dependencies**
 
 1. [Firebase_Core](https://pub.dev/packages/firebase_core)
 
@@ -49,7 +49,7 @@ It uses Firebase Cloud Firestore as well as the Firebase Authentication and Fire
 
 1. [Timeago](https://pub.dev/packages/timeago)
 
-## Installation
+## **Installation**
 
 ##### 1. Clone the repository
 
