@@ -94,10 +94,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return GestureDetector(
       onTap: () =>
           GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
-        (_file) {
+        (file) {
           setState(
             () {
-              _profileImage = _file;
+              _profileImage = file;
             },
           );
         },
@@ -135,9 +135,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             // *Name
             CustomTextFormField(
-              onSaved: (_value) {
+              onSaved: (value) {
                 setState(() {
-                  _name = _value;
+                  _name = value;
                 });
               },
               validator: (name) => RegExpUtils().fullNameValidator(name!),
@@ -146,9 +146,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             // *Email Field
             CustomTextFormField(
-              onSaved: (_value) {
+              onSaved: (value) {
                 setState(() {
-                  _email = _value;
+                  _email = value;
                 });
               },
               validator: (email) => RegExpUtils().emailValidator(email!),
@@ -157,9 +157,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             // *Password Field
             CustomTextFormField(
-              onSaved: (_value) {
+              onSaved: (value) {
                 setState(() {
-                  _password = _value;
+                  _password = value;
                 });
               },
               validator: (password) => RegExpUtils()
