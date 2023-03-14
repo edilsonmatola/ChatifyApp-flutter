@@ -1,6 +1,6 @@
 // Packages
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 // Models
 import '../../features/chat/models/chat_message_model.dart';
@@ -92,7 +92,9 @@ class DatabaseService {
             message.toJson(),
           );
     } catch (error) {
-      debugPrint('$error');
+      SnackBar(
+        content: Text('$error'),
+      );
     }
   }
 
