@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 const String userCollection = 'Users';
 
@@ -28,7 +28,12 @@ class CloudStorageService {
         (result) => result.ref.getDownloadURL(),
       );
     } catch (error) {
-      debugPrint('$error');
+      Dialog(
+        child: AlertDialog(
+          content: Text('$error'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
     return null;
   }
