@@ -124,7 +124,12 @@ class DatabaseService {
     try {
       await _dataBase.collection(chatCollection).doc(chatId).delete();
     } catch (error) {
-      debugPrint('$error');
+      Dialog(
+        child: AlertDialog(
+          content: Text('$error'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
@@ -134,7 +139,12 @@ class DatabaseService {
       final chat = await _dataBase.collection(chatCollection).add(data);
       return chat;
     } catch (error) {
-      debugPrint('$error');
+     Dialog(
+        child: AlertDialog(
+          content: Text('$error'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
     return null;
   }

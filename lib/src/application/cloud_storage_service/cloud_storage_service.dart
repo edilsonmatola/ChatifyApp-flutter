@@ -57,7 +57,12 @@ class CloudStorageService {
         (result) => result.ref.getDownloadURL(),
       );
     } catch (error) {
-      debugPrint('$error');
+     Dialog(
+        child: AlertDialog(
+          content: Text('$error'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
     return null;
   }
