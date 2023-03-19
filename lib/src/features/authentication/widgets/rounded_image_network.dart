@@ -1,6 +1,7 @@
 // packages
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class RoundedImageNetworkWidget extends StatelessWidget {
         ),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
+          image: CachedNetworkImageProvider(
             imagePath,
           ),
         ),
