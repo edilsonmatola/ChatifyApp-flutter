@@ -91,8 +91,12 @@ class ChatsPageProvider extends ChangeNotifier {
         },
       );
     } catch (error) {
-      debugPrint('Error getting chats.');
-      debugPrint('$error');
+      Dialog(
+        child: AlertDialog(
+          content: Text('$error'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 }
