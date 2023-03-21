@@ -115,7 +115,12 @@ class DatabaseService {
         },
       );
     } catch (e) {
-      debugPrint('$e');
+      Dialog(
+        child: AlertDialog(
+          content: Text('$e'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
