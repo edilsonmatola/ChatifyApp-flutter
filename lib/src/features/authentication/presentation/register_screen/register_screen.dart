@@ -16,10 +16,10 @@ class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  RegisterScreenState createState() => RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class RegisterScreenState extends State<RegisterScreen> {
 // * Responsive layout
   late double _deviceWidth;
   late double _deviceHeight;
@@ -184,22 +184,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
           //* Saving the input
           _registerFormKey.currentState!.save();
           //* Register user in the Firebase Authentication
-          final _uid = await _auth.registerUserUsingEmailAndPassword(
+          final uid = await _auth.registerUserUsingEmailAndPassword(
             _email!,
             _password!,
           );
           //* Upload the user image to the Firebase Storage
-          final _imageUrl =
+          final imageUrl =
               await _cloudStorageService.saveUserImageProfileToStorage(
-            _uid!,
+            uid!,
             _profileImage!,
           );
           // Go to database to create user with uid
           await _database.createUser(
-            _uid,
+            uid,
             _email!,
             _name!,
-            _imageUrl!,
+            imageUrl!,
           );
           //* Once the user is created, we will go back to the login page where we can login with the registered credentials
           await _auth.logout();
