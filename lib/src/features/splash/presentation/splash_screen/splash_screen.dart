@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
 // packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../core/constants/constants_export.dart';
-import '../../../../application/firestore_database_service/database_service.dart';
 import '../../../../application/application_export.dart';
+import '../../../../application/firestore_database_service/database_service.dart';
+import '../../../../core/constants/constants_export.dart';
 
 // Services
 
@@ -19,10 +18,10 @@ class SplashScreen extends StatefulWidget {
   final VoidCallback onInitializationComplete;
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -41,8 +40,21 @@ class _SplashScreenState extends State<SplashScreen> {
       debugShowCheckedModeBanner: false,
       title: 'Chatify',
       theme: ThemeData(
-        backgroundColor: AppColors.appPrimaryBackgroundColor,
         scaffoldBackgroundColor: AppColors.appPrimaryBackgroundColor,
+        colorScheme: const ColorScheme(
+          background: Colors.black,
+          brightness: Brightness.light,
+          error: Colors.red, //* Cores das bordas do form ao dar erro
+          onError: Colors.red,
+          primary:
+              Colors.black, //* Cores dos textos nos botoes e splash dos botoes
+          onPrimary: Colors.black,
+          onBackground: Colors.black, //* Cores dos formfields nao focados
+          secondary: Colors.black,
+          onSecondary: Colors.black,
+          surface: Colors.white, //* Cor primaria dos bottoes
+          onSurface: Colors.black, //* Cores dos icones normais,),
+        ),
       ),
       home: Scaffold(
         //* Splash Image on Initialization
@@ -70,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _registerServices();
   }
 
-  // App & Firebase Services
+  /// App & Firebase Services
   Future<void> _registerServices() async {
     // Creating a new instance of the Navigation Service
     GetIt.instance.registerSingleton<NavigationService>(
