@@ -7,8 +7,6 @@ import '../../../../application/application_export.dart';
 import '../../../../application/firestore_database_service/database_service.dart';
 import '../../../../core/constants/constants_export.dart';
 
-// Services
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     Key? key,
